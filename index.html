@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" data-theme="">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <link rel="icon" type="image/svg+xml" href="" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Renta</title>
+    <script>
+      (function() {
+        // Check localStorage first, then system preference
+        const savedTheme = localStorage.getItem("theme");
+        const systemDark = window.matchMedia('(prefers-color-scheme: night)').matches;
+        const initialTheme = savedTheme || (systemDark ? 'night' : 'lofi');
+        
+        // Set both data-theme and color-scheme for better compatibility
+        document.documentElement.setAttribute("data-theme", initialTheme);
+        document.documentElement.style.colorScheme = initialTheme === 'night' ? 'night' : 'lofi';
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
