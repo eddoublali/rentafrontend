@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useUser } from '../../../context/UserContext';
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useUser } from "../../../context/UserContext";
+import { t } from "i18next";
+import { ArrowLeft } from "lucide-react";
 
 // Simple DaisyUI spinner component
 const LoadingSpinner = () => (
@@ -34,38 +36,61 @@ export default function ShowUser() {
 
   if (!user) {
     return (
-      <div className="text-center text-red-500 mt-10">
-        User not found
-      </div>
+      <>
+        <div className=" py-10 text-gray-500 items-center text-center ">
+          <h1 className="text-xl font-semibold text-error">
+            {t("user.userNotfound")}
+          </h1>
+          <p className="mt-2"> {t("user.notFoundmessage")}</p>
+
+          <p className="mt-2">
+            <button
+              onClick={() => navigate("/users")}
+              className="mt-4 btn bg-sky-600 text-white  "
+            >
+              <ArrowLeft size={16} /> {t("user.Back")}
+            </button>
+          </p>
+        </div>
+      </>
     );
+
   }
 
   return (
-    <div className="max-w-xl mx-auto mt-10 p-6 shadow-md bg-base-100 rounded-box border border-base-content/10">
-      <h2 className="text-2xl font-bold mb-4 text-center">User Details</h2>
-      <div className="card g-base-100 ">
-        <div className="card-body">
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <p className="font-semibold">Name:</p>
-              <p>{user.name || 'N/A'}</p>
-            </div>
-            <div>
-              <p className="font-semibold">Email:</p>
-              <p>{user.email || 'N/A'}</p>
-            </div>
-            <div>
-              <p className="font-semibold">Role:</p>
-              <p>{user.role || 'N/A'}</p>
-            </div>
-          </div>
-        </div>
+    <div  className="  p-6 min-h-screen">
+     
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold">
+          {t("user.UserDetails")}
+        </h1>
+        <button className="btn " onClick={() => navigate("/users")}>
+          {t("user.Back")}
+        </button>
       </div>
 
-      <div className="flex justify-center mt-6">
-        <button onClick={() => navigate(-1)} className="btn btn-outline btn-sm">
-          ← Back
-        </button>
+      <div className="bg-white rounded-2xl shadow-lg p-8 h-screen">
+        {/* Personal Details */}
+        <div className="grid grid-cols-1  gap-6 mb-8 place-items-center">
+          <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between w-1/2 ">
+            <p className="block text-lg  font-medium text-gray-500">
+              {t("user.name")}
+            </p>
+            <p className="text-lg text-gray-900 ">{user.name||t("common.na")}</p>
+          </div>
+          <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between  w-1/2">
+            <p className="block text-lg  font-medium text-gray-500">
+              {t("user.email")}
+            </p>
+            <p className="text-lg text-gray-900 ">{user.email||t("common.na")}</p>
+          </div>
+          <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between  w-1/2">
+            <p className="block text-lg  font-medium text-gray-500">
+              {t("user.role")}
+            </p>
+            <p className="text-lg text-gray-900 ">{user.role ||t("common.na")}</p>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -168,14 +168,81 @@
     "reservationNotFound": "Reservation Not Found",
     "notFoundmessage": "The Reservation you are looking for doesn't exist or has been removed.",
     "addreservationmessage": "Add your first reservation to get started.",
-    "serchbyclient": " Search by Client Name"
-    ,"serchbyBrand": " Search by Vehicle Brand"
+    "serchbyclient": " Search by Client Name",
+    "serchbyBrand": " Search by Vehicle Brand",
+    "ReservationDetails": "Reservation Details",
+    "Back": "Back to Reservations",
+    "VehicleClientInfo": "Vehicle & Client Information",
+    "PrimaryClient": "Primary Client",
+    "Notes": "Notes",
+    "AdditionalDetails": "Additional Details",
+    "VehicleStatus": "Vehicle Status",
+    "LocationInformation": "Location Information"
   },
 
   "client": {
-    "name": "Client Name"
+    "name": "Client Name",
+    "email": "Email",
+    "phone": "Phone",
+    "cin": "CIN",
+    "license": "License",
+    "allClients": "All Clients",
+    "addNewClient": "Add New Client",
+    "searchByCIN": "Search by CIN",
+    "searchByLicense": "Search by License",
+    "noClients": "No clients available.",
+    "addFirstClient": "Add your first client to get started.",
+    "createClient": "Create Client",
+    "personalInformation": "Personal Information",
+    "cinExpiry": "CIN Expiry Date",
+    "licenseExpiry": "License Expiry Date",
+    "address": "Address",
+    "nationality": "Nationality",
+    "gender": "Gender",
+    "clientType": "Client Type",
+    "birthDate": "Birth Date",
+    "passportNumber": "Passport Number",
+    "passportExpiry": "Passport Expiry Date",
+    "cinImage": "CIN Image",
+    "licenseImage": "License Image",
+    "blacklistClient": "Blacklist Client",
+    "companyInformation": "Company Information",
+    "companyName": "Company Name",
+    "registrationNumber": "Registration Number",
+    "genderMale": "Male",
+    "genderFemale": "Female",
+    "typePersonal": "Personal",
+    "typeEnterprise": "Enterprise",
+    "errorCINImageRequired": "CIN Image is required",
+    "errorLicenseImageRequired": "License Image is required",
+    "errorPassportRequired": "Passport is required",
+    "errorNoResponse": "No response from server",
+    "errorEmailExists": "Email already exists",
+    "successCreated": "Client successfully created",
+    "successUpdated": "Client successfully updated",
+    "successDeleted": "Client successfully deleted",
+    "editClient": "Edit Client",
+    "updateClient": "Update Client",
+    "accidents": "Accidents",
+    "revenues": "Revenues",
+    "showCin": "View CIN",
+    "hideCin": "Hide CIN",
+    "noCinImage": "No CIN image available",
+    "showLicense": "View License",
+    "hideLicense": "Hide License",
+    "noLicenseImage": "No license image available",
+    "accidentList": "List of Accidents",
+    "toBeImplemented": "To be implemented."
   },
 
+  "infraction": {
+    "infractions": "Infractions",
+    "infractionList": "List of Infractions"
+  },
+  "contract": {
+    "contractList": "List of Contracts",
+    "toBeImplemented": "Contract list to be implemented."
+  },
   "common": {
     "actions": "Actions",
     "confirm": "Confirm",
@@ -183,7 +250,14 @@
     "saving": "Saving...",
     "selectClient": "Select Client",
     "selectVehicle": "Select Vehicle",
-    "selected": "Selected"
+    "selected": "Selected",
+    "yes": "Yes, Delete",
+    "view": "View",
+    "edit": "Edit",
+    "delete": "Delete",
+    "na": "N/A",
+
+    "no": "No"
   },
   "dropdown": "right",
   "accessories": {
@@ -219,7 +293,21 @@
   "clients": {
     "return": "Return to Clients List",
     "clientNotFound": "Client Not Found",
-    "notFoundmessage": "The client you are looking for doesn't exist or has been removed."
+    "notFoundmessage": "The client you are looking for doesn't exist or has been removed.",
+    "deleteTitle": "Delete Confirmation",
+    "deleteMessage": "Are you sure you want to delete this client?"
+  },
+  "nationalities": {
+    "moroccan": "Moroccan",
+    "algerian": "Algerian",
+    "tunisian": "Tunisian",
+    "french": "French",
+    "spanish": "Spanish",
+    "italian": "Italian",
+    "german": "German",
+    "american": "American",
+    "british": "British",
+    "canadian": "Canadian"
   },
   "settings": "Settings",
   "profile": "Profile",
@@ -230,6 +318,16 @@
   "appearance": "Appearance",
   "appearance.description": "Change theme and interface style.",
   "general": "General",
-  "general.description": "Other general configuration options."
-  
+  "general.description": "Other general configuration options.",
+   
+  "user": {
+    "UserDetails": "User Details",
+    "Back": "Back To Users List",
+    "name": "User Name",
+    "email": "Email Address",
+    "role": "User Role",
+    "status": "User Status",
+    "notFoundmessage": "The User you are looking for doesn't exist or has been removed."
+    ,"userNotfound":"User Not Found"
+  }
 }

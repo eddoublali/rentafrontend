@@ -96,203 +96,201 @@ export default function ShowClient() {
     );
   }
 
-  return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Summary Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          <div className="bg-white rounded-2xl p-6 text-center shadow-lg">
-            <h3 className="text-lg font-semibold text-sky-600">Réservations</h3>
-            <p className="text-2xl font-bold text-gray-900 mt-2 ">{client.reservations.reduce((acc) => acc + 1, 0)}</p>
+
+return (
+  <div className="min-h-screen bg-gray-100 p-6">
+    <div className="max-w-7xl mx-auto">
+      {/* Summary Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div className="bg-white rounded-2xl p-6 text-center shadow-lg">
+          <h3 className="text-lg font-semibold text-sky-600">{t("reservation.reservationList")}</h3>
+          <p className="text-2xl font-bold text-gray-900 mt-2 ">{client.reservations.reduce((acc) => acc + 1, 0)}</p>
+        </div>
+        <div className="bg-white rounded-2xl p-6 text-center shadow-lg">
+          <h3 className="text-lg font-semibold text-sky-600">{t("infraction.infractions")}</h3>
+          <p className="text-2xl font-bold text-gray-900 mt-2 ">{client.infractions.reduce((acc) => acc + 1, 0)}</p>
+        </div>
+        <div className="bg-white rounded-2xl p-6 text-center shadow-lg">
+          <h3 className="text-lg font-semibold text-sky-600">{t("client.accidents")}</h3>
+          <p className="text-2xl font-bold text-gray-900 mt-2 ">0</p>
+        </div>
+        <div className="bg-white rounded-2xl p-6 text-center shadow-lg">
+          <h3 className="text-lg font-semibold text-sky-600">{t("client.revenues")}</h3>
+          <p className="text-2xl font-bold text-gray-900 mt-2 ">{ client.reservations.reduce((acc, res) => acc + res.totalAmount, 0)} MAD</p>
+        </div>
+      </div>
+
+      {/* Client Details */}
+      <div className="bg-white rounded-2xl shadow-lg p-8">
+        {/* Personal Details */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
+            <p className="block text-lg  font-medium text-gray-500">{t("client.name")}</p>
+            <p className="text-lg text-gray-900 ">{client.name || t("common.na")}</p>
           </div>
-          <div className="bg-white rounded-2xl p-6 text-center shadow-lg">
-            <h3 className="text-lg font-semibold text-sky-600">Infractions</h3>
-            <p className="text-2xl font-bold text-gray-900 mt-2 ">{client.infractions.reduce((acc) => acc + 1, 0)}</p>
+          <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
+            <p className="block text-lg font-medium text-gray-500">{t("client.email")}</p>
+            <p className="text-lg text-gray-900 ">{client.email || t("common.na")}</p>
           </div>
-          <div className="bg-white rounded-2xl p-6 text-center shadow-lg">
-            <h3 className="text-lg font-semibold text-sky-600">Accidents</h3>
-            <p className="text-2xl font-bold text-gray-900 mt-2 ">0</p>
+          <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
+            <p className="block text-lg font-medium text-gray-500">{t("client.phone")}</p>
+            <p className="text-lg text-gray-900 ">{client.phone || t("common.na")}</p>
           </div>
-          <div className="bg-white rounded-2xl p-6 text-center shadow-lg">
-            <h3 className="text-lg font-semibold text-sky-600">Revenus</h3>
-            <p className="text-2xl font-bold text-gray-900 mt-2 ">{ client.reservations.reduce((acc, res) => acc + res.totalAmount, 0)} MAD</p>
+          <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
+            <p className="block text-lg font-medium text-gray-500">{t("client.gender")}</p>
+            <p className="text-lg text-gray-900 ">{client.gender || t("common.na")}</p>
+          </div>
+          <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
+            <p className="block text-lg font-medium text-gray-500">{t("client.nationality")}</p>
+            <p className="text-lg text-gray-900 ">{client.nationality || t("common.na")}</p>
+          </div>
+          <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
+            <p className="block text-lg font-medium text-gray-500">{t("client.birthDate")}</p>
+            <p className="text-lg text-gray-900 ">{formatDate(client.birthDate)}</p>
+          </div>
+          <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
+            <p className="block text-lg font-medium text-gray-500">{t("client.address")}</p>
+            <p className="text-lg text-gray-900 ">{client.address || t("common.na")}</p>
           </div>
         </div>
 
-        {/* Client Details */}
-        <div className="bg-white rounded-2xl shadow-lg p-8">
-          {/* Personal Details */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
-              <p className="block text-sm font-medium text-gray-500">Full Name</p>
-              <p className="text-lg text-gray-900 ">{client.name || "N/A"}</p>
-            </div>
-            <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
-              <p className="block text-sm font-medium text-gray-500">Email</p>
-              <p className="text-lg text-gray-900 ">{client.email || "N/A"}</p>
-            </div>
-            <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
-              <p className="block text-sm font-medium text-gray-500">Phone</p>
-              <p className="text-lg text-gray-900 ">{client.phone || "N/A"}</p>
-            </div>
-            <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
-              <p className="block text-sm font-medium text-gray-500">Gender</p>
-              <p className="text-lg text-gray-900 ">{client.gender || "N/A"}</p>
-            </div>
-            <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
-              <p className="block text-sm font-medium text-gray-500">Nationality</p>
-              <p className="text-lg text-gray-900 ">{client.nationality || "N/A"}</p>
-            </div>
-            <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
-              <p className="block text-sm font-medium text-gray-500">Birth Date</p>
-              <p className="text-lg text-gray-900 ">{formatDate(client.birthDate)}</p>
-            </div>
-            <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
-              <p className="block text-sm font-medium text-gray-500">Address</p>
-              <p className="text-lg text-gray-900 ">{client.address || "N/A"}</p>
+        {/* Identification */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
+            <p className="block text-lg font-medium text-gray-500">{t("client.cin")}</p>
+            <p className="text-lg text-gray-900 ">{client.cin || t("common.na")}</p>
+          </div>
+          <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
+            <p className="block text-lg font-medium text-gray-500">{t("client.cinExpiry")}</p>
+            <p className="text-lg text-gray-900 ">{formatDate(client.cinExpiry)}</p>
+          </div>
+          <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
+            <p className="block text-lg font-medium text-gray-500">{t("client.license")}</p>
+            <p className="text-lg text-gray-900 ">{client.license || t("common.na")}</p>
+          </div>
+          <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
+            <p className="block text-lg font-medium text-gray-500">{t("client.licenseExpiry")}</p>
+            <p className="text-lg text-gray-900 ">{formatDate(client.licenseExpiry)}</p>
+          </div>
+          {client.nationality !== t("nationalities.moroccan") && (
+            <>
+              <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
+                <p className="block text-lg font-medium text-gray-500">{t("client.passportNumber")}</p>
+                <p className="text-lg text-gray-900 ">{client.passportNumber || t("common.na")}</p>
+              </div>
+              <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
+                <p className="block text-lg font-medium text-gray-500">{t("client.passportExpiry")}</p>
+                <p className="text-lg text-gray-900 ">{formatDate(client.passportExpiry)}</p>
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* Client Status */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
+            <p className="block text-lg font-medium text-gray-500">{t("client.clientType")}</p>
+            <p className="text-lg text-gray-900 ">{client.clientType || t("common.na")}</p>
+          </div>
+          <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
+            <p className="block text-lg font-medium text-gray-500">{t("client.blacklistClient")}</p>
+            <div className="text-lg ">
+              {client.blacklisted ? (
+                <p className="inline-block bg-red-100 text-red-800 text-lg font-medium px-2.5 py-0.5 rounded">{t("common.yes")}</p>
+              ) : (
+                <p className="inline-block bg-green-100 text-green-800 text-lg font-medium px-2.5 py-0.5 rounded">{t("common.no")}</p>
+              )}
             </div>
           </div>
+        </div>
 
-          {/* Identification */}
+        {/* Company Information (if Enterprise) */}
+        {client.clientType === "ENTERPRISE" && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
-              <p className="block text-sm font-medium text-gray-500">CIN</p>
-              <p className="text-lg text-gray-900 ">{client.cin || "N/A"}</p>
+              <p className="block text-lg font-medium text-gray-500">{t("client.companyName")}</p>
+              <p className="text-lg text-gray-900 ">{client.companyName || t("common.na")}</p>
             </div>
             <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
-              <p className="block text-sm font-medium text-gray-500">CIN Expiry</p>
-              <p className="text-lg text-gray-900 ">{formatDate(client.cinExpiry)}</p>
+              <p className="block text-lg font-medium text-gray-500">{t("client.registrationNumber")}</p>
+              <p className="text-lg text-gray-900 ">{client.registrationNumber || t("common.na")}</p>
             </div>
-            <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
-              <p className="block text-sm font-medium text-gray-500">License</p>
-              <p className="text-lg text-gray-900 ">{client.license || "N/A"}</p>
-            </div>
-            <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
-              <p className="block text-sm font-medium text-gray-500">License Expiry</p>
-              <p className="text-lg text-gray-900 ">{formatDate(client.licenseExpiry)}</p>
-            </div>
-            {client.nationality !== "Moroccan" && (
-              <>
-                <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
-                  <p className="block text-sm font-medium text-gray-500">Passport Number</p>
-                  <p className="text-lg text-gray-900 ">{client.passportNumber || "N/A"}</p>
-                </div>
-                <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
-                  <p className="block text-sm font-medium text-gray-500">Passport Expiry</p>
-                  <p className="text-lg text-gray-900 ">{formatDate(client.passportExpiry)}</p>
-                </div>
-              </>
+          </div>
+        )}
+
+        {/* Documents */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            {client.cinimage ? (
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => toggleImageVisibility("cin")}
+                  className="flex items-center gap-2 bg-sky-600 text-white rounded-lg px-4 py-2 hover:bg-sky-700 transition"
+                >
+                  <IdCard size={20} />
+                  <span>{showCinImage ? t("client.hideCin") : t("client.showCin")}</span>
+                </button>
+              </div>
+            ) : (
+              <p className="text-gray-500">{t("client.noCinImage")}</p>
+            )}
+            {client.cinimage && showCinImage && (
+              <div className="mt-4">
+                <img
+                  src={getImageUrl(client.cinimage)}
+                  alt={t("client.cin")}
+                  className="w-full max-w-xs rounded-lg shadow-sm"
+                  onError={(e) => (e.target.src = "/placeholder.png")}
+                />
+              </div>
             )}
           </div>
-
-          {/* Client Status */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
-              <p className="block text-sm font-medium text-gray-500">Client Type</p>
-              <p className="text-lg text-gray-900 ">{client.clientType || "N/A"}</p>
-            </div>
-            <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
-              <p className="block text-sm font-medium text-gray-500">Blacklisted</p>
-              <div className="text-lg ">
-                {client.blacklisted ? (
-                  <p className="inline-block bg-red-100 text-red-800 text-sm font-medium px-2.5 py-0.5 rounded">Yes</p>
-                ) : (
-                  <p className="inline-block bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded">No</p>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Company Information (if Enterprise) */}
-          {client.clientType === "ENTERPRISE" && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
-                <p className="block text-sm font-medium text-gray-500">Company Name</p>
-                <p className="text-lg text-gray-900 ">{client.companyName || "N/A"}</p>
-              </div>
-              <div className="flex items-center gap-2 p-5 rounded bg-gray-50 justify-between">
-                <p className="block text-sm font-medium text-gray-500">Registration Number</p>
-                <p className="text-lg text-gray-900 ">{client.registrationNumber || "N/A"}</p>
-              </div>
-            </div>
-          )}
-
-          {/* Documents */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              {client.cinimage ? (
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => toggleImageVisibility("cin")}
-                    className="flex items-center gap-2 bg-sky-600 text-white rounded-lg px-4 py-2 hover:bg-sky-700 transition"
-                  >
-                    <IdCard size={20} />
-               
-                    <span>{showCinImage ? "Masquer CIN" : "Voir CIN"}</span>
-                  </button>
-                  
-                </div>
-              ) : (
-                <p className="text-gray-500">No CIN image available</p>
-              )}
-              {client.cinimage && showCinImage && (
-                <div className="mt-4">
-                  <img
-                    src={getImageUrl(client.cinimage)}
-                    alt="CIN"
-                    className="w-full max-w-xs rounded-lg shadow-sm"
-                    onError={(e) => (e.target.src = "/placeholder.png")}
-                  />
-                </div>
-              )}
-            </div>
-            <div>
-              {client.licenseimage ? (
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => toggleImageVisibility("license")}
-                    className="flex items-center gap-2 bg-sky-600 text-white rounded-lg px-4 py-2 hover:bg-sky-700 transition"
-                  >
-                    <CreditCard size={20} />
-                    <span>{showLicenseImage ? "Masquer Permis" : "Voir Permis"}</span>
-                  </button>
-                
-                </div>
-              ) : (
-                <p className="text-gray-500">No license image available</p>
-              )}
-              {client.licenseimage && showLicenseImage && (
-                <div className="mt-4">
-                  <img
-                    src={getImageUrl(client.licenseimage)}
-                    alt="License"
-                    className="w-full max-w-xs rounded-lg shadow-sm"
-                    onError={(e) => (e.target.src = "/placeholder.png")}
-                  />
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Infraction and Contract Lists */}
           <div>
-            <div className="mt-8">
-              <h1 className="text-xl font-bold my-4">Liste des infractions</h1>
-              <InfractionTable infractions={client.infractions} />
-            </div>
-            <div className="mt-8">
-              <h1 className="text-xl font-bold my-4">Liste des contrats</h1>
-              {/* Placeholder for contract list - you can add a similar table component here */}
-              <p className="text-gray-500">Contract list to be implemented.</p>
-            </div>
-            <div className="mt-8">
-              <h1 className="text-xl font-bold my-4">Lists des accidents</h1>
-              {/* Placeholder for contract list - you can add a similar table component here */}
-              <p className="text-gray-500">Contract list to be implemented.</p>
-            </div>
+            {client.licenseimage ? (
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => toggleImageVisibility("license")}
+                  className="flex items-center gap-2 bg-sky-600 text-white rounded-lg px-4 py-2 hover:bg-sky-700 transition"
+                >
+                  <CreditCard size={20} />
+                  <span>{showLicenseImage ? t("client.hideLicense") : t("client.showLicense")}</span>
+                </button>
+              </div>
+            ) : (
+              <p className="text-gray-500">{t("client.noLicenseImage")}</p>
+            )}
+            {client.licenseimage && showLicenseImage && (
+              <div className="mt-4">
+                <img
+                  src={getImageUrl(client.licenseimage)}
+                  alt={t("client.license")}
+                  className="w-full max-w-xs rounded-lg shadow-sm"
+                  onError={(e) => (e.target.src = "/placeholder.png")}
+                />
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Infraction and Contract Lists */}
+        <div>
+          <div className="mt-8">
+            <h1 className="text-xl font-bold my-4">{t("infraction.infractionList")}</h1>
+            <InfractionTable infractions={client.infractions} />
+          </div>
+          <div className="mt-8">
+            <h1 className="text-xl font-bold my-4">{t("contract.contractList")}</h1>
+            {/* Placeholder for contract list - you can add a similar table component here */}
+            <p className="text-gray-500">{t("contract.toBeImplemented")}</p>
+          </div>
+          <div className="mt-8">
+            <h1 className="text-xl font-bold my-4">{t("client.accidentList")}</h1>
+            {/* Placeholder for contract list - you can add a similar table component here */}
+            <p className="text-gray-500">{t("client.toBeImplemented")}</p>
           </div>
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 }

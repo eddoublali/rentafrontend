@@ -13,16 +13,13 @@ export default function SettingsPage() {
    es: "Español",
  };
 
- // Initialize state from current i18n language, not localStorage
  const [currentLanguage, setCurrentLanguage] = useState(i18n.language);
 
- // Keep state in sync with i18n language changes
  useEffect(() => {
    setCurrentLanguage(i18n.language);
  }, [i18n.language]);
 
  const changeLanguage = (languageCode) => {
-   // This will trigger the 'languageChanged' event we're listening for in App.jsx
    i18n.changeLanguage(languageCode);
    localStorage.setItem("appLanguage", languageCode);
    location.reload();

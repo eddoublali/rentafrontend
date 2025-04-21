@@ -164,10 +164,28 @@
     "notFoundmessage": "الحجز الذي تبحث عنه غير موجود أو تم حذفه.",
     "addreservationmessage": "أضف أول حجز للبدء.",
     "serchbyclient": "البحث حسب اسم العميل",
-    "serchbyBrand": "البحث حسب ماركة المركبة"
+    "serchbyBrand": "البحث حسب ماركة المركبة",
+    "ReservationDetails": "تفاصيل الحجز",
+    "Back": "العودة إلى الحجوزات",
+    "VehicleClientInfo": "معلومات المركبة والعميل",
+    "PrimaryClient": "العميل الرئيسي",
+    "Notes": "ملاحظات",
+    "AdditionalDetails": "تفاصيل إضافية",
+    "VehicleStatus": "حالة المركبة",
+    "LocationInformation": "معلومات الموقع"
   },
   "client": {
-    "name": "اسم العميل"
+    "name": "اسم العميل",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "cin": "رقم البطاقة الوطنية",
+    "license": "رخصة القيادة",
+    "allClients": "جميع العملاء",
+    "addNewClient": "إضافة عميل جديد",
+    "searchByCIN": "البحث برقم البطاقة الوطنية",
+    "searchByLicense": "البحث برقم رخصة القيادة",
+    "noClients": "لا يوجد عملاء متاحين.",
+    "addFirstClient": "أضف أول عميل للبدء."
   },
   "common": {
     "actions": "الإجراءات",
@@ -176,7 +194,11 @@
     "saving": "جارٍ الحفظ...",
     "selectClient": "اختر العميل",
     "selectVehicle": "اختر المركبة",
-    "selected": "تم الاختيار"
+    "selected": "تم الاختيار",
+    "yes": "نعم، احذف",
+    "view": "عرض",
+    "edit": "تعديل",
+    "delete": "حذف"
   },
   "dropdown": "left",
   "accessories": {
@@ -212,6 +234,18 @@
   "clients": {
     "return": "العودة إلى قائمة العملاء",
     "clientNotFound": "العميل غير موجود",
-    "notFoundmessage": "العميل الذي تبحث عنه غير موجود أو تم حذفه."
-  }
+    "notFoundmessage": "العميل الذي تبحث عنه غير موجود أو تم حذفه.",
+    "deleteTitle": "تأكيد الحذف",
+    "deleteMessage": "هل أنت متأكد أنك تريد حذف هذا العميل؟"
+  },
+  "settings": "الإعدادات",
+  "profile": "الملف الشخصي",
+  "profile.description": "تحديث معلوماتك الشخصية وعنوان البريد الإلكتروني.",
+  "theme": "المظهر",
+  "theme.description": "التبديل بين الوضع الفاتح والداكن.",
+  "language": "اللغة",
+  "appearance": "المظهر",
+  "appearance.description": "تغيير السمة ونمط الواجهة.",
+  "general": "عام",
+  "general.description": "خيارات التكوين العامة الأخرى."
 }

@@ -17,6 +17,8 @@ export default function ShowReservation() {
   const [reservation, setReservation] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+ 
+  
 
   useEffect(() => {
     const loadReservation = async () => {
@@ -107,40 +109,42 @@ export default function ShowReservation() {
     <div className="  p-6 min-h-screen">
       <div className="mx-auto">
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-3xl font-bold">Reservation Details</h1>
+          <h1 className="text-3xl font-bold">{t("reservation.ReservationDetails")} </h1>
           <button className="btn " onClick={() => navigate("/reservations")}>
-            Back to Reservations
+          {t("reservation.Back")}
           </button>
         </div>
 
         <div className="card bg-base-100 shadow-md">
           <div className="card-body">
             {/* Vehicle and Client Info */}
-            <h2 className="card-title mb-4">Vehicle & Client Information</h2>
+            <h2 className="card-title mb-4">{t("reservation.VehicleClientInfo")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between ">
-                <p className="block text-sm font-medium text-gray-500 ">
-                  Vehicle
+              <div className="flex w-full justify-between items-center p-5 rounded bg-gray-50">
+                <p className="text-sm font-medium text-gray-500">
+                {t("reservation.vehicle")}
                 </p>
-                <p className="text-lg text-gray-900 ">
+                <p className="text-lg text-gray-900  text-right">
                   {getVehicleName(reservation.vehicleId) || "N/A"}
                 </p>
               </div>
+   
 
-              <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
+
+              <div className="flex gap-2 p-5 rounded bg-gray-50 w-full  justify-between">
                 <p className="block text-sm font-medium text-gray-500">
-                  Primary Client
+                {t("reservation.PrimaryClient")}
                 </p>
-                <p className="text-lg text-gray-900 ">
+                <p className="text-lg text-gray-900  text-right">
                   {getClientName(reservation.clientId) || "N/A"}{" "}
                 </p>
               </div>
 
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
                 <p className="block text-sm font-medium text-gray-500">
-                  Second Driver
+                {t("reservation.secondDriver")}
                 </p>
-                <p className="text-lg text-gray-900 ">
+                <p className="text-lg text-gray-900  text-right">
                   {reservation.secondDriver && reservation.clientSeconId
                     ? getClientName(reservation.clientSeconId)
                     : "None"}
@@ -149,118 +153,120 @@ export default function ShowReservation() {
             </div>
 
             {/* Dates and Payment */}
-            <h2 className="card-title mt-8 mb-4">Reservation Details</h2>
+            <h2 className="card-title mt-8 mb-4">{t("reservation.ReservationDetails")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
                 <p className="block text-sm font-medium text-gray-500">
-                  Start Date
+                {t("reservation.startDate")}
                 </p>
-                <p className="text-lg text-gray-900 ">
+                <p className="text-lg text-gray-900  text-right">
                   {formatDate(reservation.startDate)}
                 </p>
               </div>
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
                 <p className="block text-sm font-medium text-gray-500">
-                  End Date
+                {t("reservation.endDate")}
                 </p>
-                <p className="text-lg text-gray-900 ">
+                <p className="text-lg text-gray-900  text-right">
                   {formatDate(reservation.endDate)}
                 </p>
               </div>
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
                 <p className="block text-sm font-medium text-gray-500">
-                  Total Amount
+                {t("reservation.totalAmount")}
                 </p>
-                <p className="text-lg text-gray-900 ">
-                  {reservation.totalAmount?.toFixed(2) || "0.00"} DH
-                </p>
-              </div>
-              <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
-                <p className="block text-sm font-medium text-gray-500">
-                  Additional Charge
-                </p>
-                <p className="text-lg text-gray-900 ">
-                  {reservation.additionalCharge?.toFixed(2) || "0.00"} DH
+                <p className="text-lg text-gray-900  text-right">
+                  {reservation.totalAmount?.toFixed(2) || "0.00"} {t("vehicle.dh")}
                 </p>
               </div>
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
                 <p className="block text-sm font-medium text-gray-500">
-                  Payment Method
+                {t("reservation.additionalCharge")}
+
                 </p>
-                <p className="text-lg text-gray-900 ">
+                <p className="text-lg text-gray-900  text-right">
+                  {reservation.additionalCharge?.toFixed(2) || "0.00"} {t("vehicle.dh")}
+                </p>
+              </div>
+              <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
+                <p className="block text-sm font-medium text-gray-500">
+                {t("reservation.paymentMethod")}
+                </p>
+                <p className="text-lg text-gray-900  text-right">
                   {reservation.paymentMethod || "N/A"}
                 </p>
               </div>
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
                 <p className="block text-sm font-medium text-gray-500">
-                  Payment Status
+                {t("reservation.paymentStatus")}
                 </p>
-                <p className="text-lg text-gray-900 ">
+                <p className="text-lg text-gray-900  text-right">
                   {reservation.paymentStatus || "N/A"}
                 </p>
               </div>
             </div>
 
             {/* Locations */}
-            <h2 className="card-title mt-8 mb-4">Location Information</h2>
+            <h2 className="card-title mt-8 mb-4">{t("reservation.LocationInformation")}
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
                 <p className="block text-sm font-medium text-gray-500">
-                  Delivery Location
+                  {t("reservation.deliveryLocation")}
                 </p>
-                <p className="text-lg text-gray-900 ">
+                <p className="text-lg text-gray-900  text-right">
                   {reservation.deliveryLocation || "N/A"}
                 </p>
               </div>
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
                 <p className="block text-sm font-medium text-gray-500">
-                  Return Location
+                 {t("reservation.returnLocation")}
                 </p>
-                <p className="text-lg text-gray-900 ">
+                <p className="text-lg text-gray-900  text-right">
                   {reservation.returnLocation || "N/A"}
                 </p>
               </div>
             </div>
 
             {/* Vehicle Status */}
-            <h2 className="card-title mt-8 mb-4">Vehicle Status</h2>
+            <h2 className="card-title mt-8 mb-4">{t("reservation.VehicleStatus")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
                 <p className="block text-sm font-medium text-gray-500">
-                  Fuel Level
+                  {t("reservation.fuelLevel")}
                 </p>
-                <p className="text-lg text-gray-900 ">
+                <p className="text-lg text-gray-900  text-right">
                   {reservation.fuelLevel?.toFixed(2) || "N/A"}
                 </p>
               </div>
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
                 <p className="block text-sm font-medium text-gray-500">
-                  Departure Km
+                    {t("reservation.departureKm")}
                 </p>
-                <p className="text-lg text-gray-900 ">
+                <p className="text-lg text-gray-900  text-right">
                   {reservation.departureKm?.toFixed(2) || "N/A"}
                 </p>
               </div>
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
                 <p className="block text-sm font-medium text-gray-500">
-                  Status
+                  {t("reservation.status")}
                 </p>
-                <p className="text-lg text-gray-900 ">
+                <p className="text-lg text-gray-900  text-right">
                   {reservation.status || "N/A"}
                 </p>
               </div>
             </div>
 
             {/* Accessories and Documents */}
-            <h2 className="card-title mt-8 mb-4">Additional Details</h2>
+            <h2 className="card-title mt-8 mb-4">{t("reservation.AdditionalDetails")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
                 <p className="block text-sm font-medium text-gray-500">
-                Accessories
+                {t("reservation.accessories")}
                 </p>
-                <div className="text-lg text-gray-900 ">
+                <div className="text-lg text-gray-900  text-right">
                   {reservation.accessories && reservation.accessories.length > 0 ? (
-                    <ul className="list text-lg text-gray-900 ">
+                    <ul className="list text-lg text-gray-900  text-right">
                       {reservation.accessories.map((doc, index) => (
                         <li key={index}>{doc}</li>
                       ))}
@@ -270,25 +276,14 @@ export default function ShowReservation() {
                   )}
                 </div>
               </div>
-              {/* <div className="flex items-center gap-2 p-5 rounded bg-gray-50 ">
-                <p className="block text-sm font-medium text-gray-500">
-                  Accessories
-                </p>
-                <p className="text-lg text-gray-900 ">
-                  {formatArray(reservation.accessories) || "N/A"}
-                </p>
-              </div> */}
-              {/* <div className="flex items-center gap-2 p-5 rounded bg-gray-50">
-                  <p className="block text-sm font-medium text-gray-500">Documents</p>
-                <p className="text-lg text-gray-900 ">{formatArray(reservation.Documents)}</p>
-              </div> */}
+          
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50">
                 <p className="block text-sm font-medium text-gray-500">
-                  Documents
+                {t("reservation.documents")}
                 </p>
-                <div className="text-lg text-gray-900 ">
+                <div className="text-lg text-gray-900  text-right">
                   {reservation.documents && reservation.documents.length > 0 ? (
-                    <ul className="list text-lg text-gray-900  ">
+                    <ul className="list text-lg text-gray-900  text-right ">
                       {reservation.documents.map((doc, index) => (
                         <li key={index}>{doc}</li>
                       ))}
@@ -301,25 +296,16 @@ export default function ShowReservation() {
             </div>
 
             {/* Notes */}
-            <h2 className="card-title mt-8 mb-4">Notes</h2>
+            <h2 className="card-title mt-8 mb-4">{t("reservation.Notes")}</h2>
             <div className="grid grid-cols-1 gap-4">
               <div className="p-5 rounded bg-gray-50">
-                <p className="text-lg text-gray-900 text-center">
+                <p className="text-lg text-gray-900  text-center">
                   {reservation.note || "No notes available"}
                 </p>
               </div>
             </div>
 
-            {/* Back Button
-            <div className="mt-8">
-              <button
-                className="inline-flex items-center px-4 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-600 transition-colors duration-200"
-                onClick={() => navigate("/reservations")}
-              >
-                <ArrowLeft className="mr-2 h-5 w-5" />
-                Back to Reservations
-              </button> */}
-            {/* </div> */}
+          
           </div>
         </div>
       </div>

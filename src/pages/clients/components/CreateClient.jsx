@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { useClient } from "../../../context/ClientContext";
 import { useNavigate } from "react-router-dom";
 import clientSchema from "./ClientValidation";
+import { t } from "i18next";
 
 export default function CreateClient({
-  title = "Create Client",
+  title = t("client.createClient"),
   isSaving = false,
 }) {
   const navigate = useNavigate();
@@ -103,10 +104,10 @@ export default function CreateClient({
       // Custom validation for required files
       const newErrors = {};
       if (!files.cinimage) {
-        newErrors.cinimage = "CIN image is required";
+        newErrors.cinimage = t("client.errorCINImageRequired");
       }
       if (!files.licenseimage) {
-        newErrors.licenseimage = "License image is required";
+        newErrors.licenseimage = t("client.errorLicenseImageRequired");
       }
 
       // Custom validation for non-Moroccan clients
@@ -115,8 +116,7 @@ export default function CreateClient({
           !validationData.passportNumber ||
           validationData.passportNumber.trim() === ""
         ) {
-          newErrors.passportNumber =
-            "Passport number is required for non-Moroccan clients";
+          newErrors.passportNumber = t("client.errorPassportRequired");
         }
       }
 
@@ -141,88 +141,6 @@ export default function CreateClient({
       return false;
     }
   };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setIsSubmitting(true);
-
-  //   try {
-  //     if (!validateForm()) {
-  //       setIsSubmitting(false);
-  //       return;
-  //     }
-
-  //     const formattedData = { ...formData };
-
-  //     // Format date fields
-  //     const dateFields = ["cinExpiry", "licenseExpiry", "passportExpiry", "birthDate"];
-  //     dateFields.forEach((field) => {
-  //       if (formattedData[field] && formattedData[field] !== "") {
-  //         try {
-  //           const date = new Date(formattedData[field] + "T12:00:00Z");
-  //           formattedData[field] = date.toISOString();
-  //         } catch (error) {
-  //           console.error(`Error formatting date for ${field}:`, error);
-  //         }
-  //       } else {
-  //         formattedData[field] = undefined;
-  //       }
-  //     });
-
-  //     // Remove passport fields for Moroccan clients
-  //     if (formattedData.nationality === "Moroccan") {
-  //       delete formattedData.passportNumber;
-  //       delete formattedData.passportExpiry;
-  //     }
-
-  //     // Remove file names from data
-  //     delete formattedData.cinimage;
-  //     delete formattedData.licenseimage;
-
-  //     // Create FormData object
-  //     const formDataToSend = new FormData();
-  //     Object.entries(formattedData).forEach(([key, value]) => {
-  //       if (value !== null && value !== undefined && value !== "") {
-  //         formDataToSend.append(key, typeof value === "boolean" ? value.toString() : value);
-  //       }
-  //     });
-
-  //     if (files.cinimage) {
-  //       formDataToSend.append("cinimage", files.cinimage);
-  //     }
-  //     if (files.licenseimage) {
-  //       formDataToSend.append("licenseimage", files.licenseimage);
-  //     }
-
-  //     console.log("Submitting client data...", Object.fromEntries(formDataToSend));
-
-  //     const response = await createClient(formDataToSend);
-  //     if (!response) {
-  //       throw new Error("No response received from server");
-  //     }
-
-  //     if (!response.success) {
-  //       if (response.error && response.error.includes("email")) {
-  //         setErrors((prev) => ({ ...prev, email: "Email already exists" }));
-  //       } else {
-  //         setErrors((prev) => ({ ...prev, general: response.error || "Unknown error occurred" }));
-  //       }
-  //       console.error("API Error:", response.error);
-  //       return;
-  //     }
-
-  //     console.log("Client created successfully!");
-  //     navigate('/clients');
-  //   } catch (error) {
-  //     console.error("Error creating client:", error);
-  //     setErrors((prev) => ({
-  //       ...prev,
-  //       general: `Error: ${error.message || "Unknown error occurred"}`,
-  //     }));
-  //   } finally {
-  //     setIsSubmitting(false);
-  //   }
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -269,9 +187,6 @@ export default function CreateClient({
       // Create FormData object
       const formDataToSend = new FormData();
       Object.entries(formattedData).forEach(([key, value]) => {
-        // if (key === "blacklisted" && formattedData.clientType !== "ENTERPRISE") {
-        //   return;
-        // }
         if (value !== null && value !== undefined && value !== "") {
           formDataToSend.append(
             key,
@@ -294,34 +209,35 @@ export default function CreateClient({
 
       const response = await createClient(formDataToSend);
       if (!response) {
-        throw new Error("No response received from server");
+        throw new Error(t("client.errorNoResponse"));
       }
 
       if (!response.success) {
         if (response.error && response.error.includes("email")) {
-          setErrors((prev) => ({ ...prev, email: "Email already exists" }));
+          setErrors((prev) => ({ ...prev, email: t("client.errorEmailExists") }));
         } else {
           setErrors((prev) => ({
             ...prev,
-            general: response.error || "Unknown error occurred",
+            general: response.error || t("common.errorUnknown"),
           }));
         }
         console.error("API Error:", response.error);
         return;
       }
 
-      console.log("Client created successfully!");
+      console.log(t("client.successCreated"));
       navigate("/clients");
     } catch (error) {
       console.error("Error creating client:", error);
       setErrors((prev) => ({
         ...prev,
-        general: `Error: ${error.message || "Unknown error occurred"}`,
+        general: `${t("common.error")}: ${error.message || t("common.errorUnknown")}`,
       }));
     } finally {
       setIsSubmitting(false);
     }
   };
+  
   const getInputClassName = (fieldName) => {
     return `input input-bordered w-full ${
       errors[fieldName] ? "input-error" : ""
@@ -331,15 +247,14 @@ export default function CreateClient({
   return (
     <div className="card bg-base-100 shadow-md">
       <div className="card-body">
-       
         <div className="flex justify-between items-center ">
-        <h1 className="card-title text-xl">{title}</h1>
+          <h1 className="card-title text-xl">{title}</h1>
           <button
             type="button"
             onClick={() => navigate("/clients")}
             className="btn btn-ghost"
           >
-            Cancel
+            {t("common.cancel")}
           </button>
         </div>
 
@@ -357,13 +272,13 @@ export default function CreateClient({
           {/* Personal Information */}
           <div className="md:col-span-3">
             <h2 className="font-semibold text-lg divider">
-              Personal Information
+              {t("client.personalInformation")}
             </h2>
           </div>
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Name:</span>
+              <span className="label-text">{t("client.name")}:</span>
             </label>
             <input
               type="text"
@@ -381,7 +296,7 @@ export default function CreateClient({
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Phone:</span>
+              <span className="label-text">{t("client.phone")}:</span>
             </label>
             <input
               type="text"
@@ -401,7 +316,7 @@ export default function CreateClient({
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Email:</span>
+              <span className="label-text">{t("client.email")}:</span>
             </label>
             <input
               type="email"
@@ -421,7 +336,7 @@ export default function CreateClient({
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text">CIN:</span>
+              <span className="label-text">{t("client.cin")}:</span>
             </label>
             <input
               type="text"
@@ -439,7 +354,7 @@ export default function CreateClient({
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text">CIN Expiry:</span>
+              <span className="label-text">{t("client.cinExpiry")}:</span>
             </label>
             <input
               type="date"
@@ -459,7 +374,7 @@ export default function CreateClient({
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text">License:</span>
+              <span className="label-text">{t("client.license")}:</span>
             </label>
             <input
               type="text"
@@ -479,7 +394,7 @@ export default function CreateClient({
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text">License Expiry:</span>
+              <span className="label-text">{t("client.licenseExpiry")}:</span>
             </label>
             <input
               type="date"
@@ -499,7 +414,7 @@ export default function CreateClient({
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Address:</span>
+              <span className="label-text">{t("client.address")}:</span>
             </label>
             <input
               type="text"
@@ -519,7 +434,7 @@ export default function CreateClient({
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Nationality:</span>
+              <span className="label-text">{t("client.nationality")}:</span>
             </label>
             <select
               name="nationality"
@@ -527,22 +442,22 @@ export default function CreateClient({
               onChange={handleChange}
               className="select select-bordered w-full"
             >
-              <option value="Moroccan">Moroccan</option>
-              <option value="Algerian">Algerian</option>
-              <option value="Tunisian">Tunisian</option>
-              <option value="French">French</option>
-              <option value="Spanish">Spanish</option>
-              <option value="Italian">Italian</option>
-              <option value="German">German</option>
-              <option value="American">American</option>
-              <option value="British">British</option>
-              <option value="Canadian">Canadian</option>
+              <option value="Moroccan">{t("nationalities.moroccan")}</option>
+              <option value="Algerian">{t("nationalities.algerian")}</option>
+              <option value="Tunisian">{t("nationalities.tunisian")}</option>
+              <option value="French">{t("nationalities.french")}</option>
+              <option value="Spanish">{t("nationalities.spanish")}</option>
+              <option value="Italian">{t("nationalities.italian")}</option>
+              <option value="German">{t("nationalities.german")}</option>
+              <option value="American">{t("nationalities.american")}</option>
+              <option value="British">{t("nationalities.british")}</option>
+              <option value="Canadian">{t("nationalities.canadian")}</option>
             </select>
           </div>
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Gender:</span>
+              <span className="label-text">{t("client.gender")}:</span>
             </label>
             <select
               name="gender"
@@ -550,14 +465,14 @@ export default function CreateClient({
               onChange={handleChange}
               className="select select-bordered w-full"
             >
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
+              <option value="Male">{t("client.genderMale")}</option>
+              <option value="Female">{t("client.genderFemale")}</option>
             </select>
           </div>
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Client Type:</span>
+              <span className="label-text">{t("client.clientType")}:</span>
             </label>
             <select
               name="clientType"
@@ -565,14 +480,14 @@ export default function CreateClient({
               onChange={handleChange}
               className="select select-bordered w-full"
             >
-              <option value="PERSONAL">Personal</option>
-              <option value="ENTERPRISE">Enterprise</option>
+              <option value="PERSONAL">{t("client.typePersonal")}</option>
+              <option value="ENTERPRISE">{t("client.typeEnterprise")}</option>
             </select>
           </div>
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Birth Date:</span>
+              <span className="label-text">{t("client.birthDate")}:</span>
             </label>
             <input
               type="date"
@@ -594,7 +509,7 @@ export default function CreateClient({
             <>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Passport Number:</span>
+                  <span className="label-text">{t("client.passportNumber")}:</span>
                   <span className="label-text-alt text-error">*</span>
                 </label>
                 <input
@@ -615,7 +530,7 @@ export default function CreateClient({
 
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Passport Expiry:</span>
+                  <span className="label-text">{t("client.passportExpiry")}:</span>
                   <span className="label-text-alt text-error">*</span>
                 </label>
                 <input
@@ -638,7 +553,7 @@ export default function CreateClient({
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text">CIN Image:</span>
+              <span className="label-text">{t("client.cinImage")}:</span>
               <span className="label-text-alt text-error">*</span>
             </label>
             <input
@@ -659,7 +574,7 @@ export default function CreateClient({
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text">License Image:</span>
+              <span className="label-text">{t("client.licenseImage")}:</span>
               <span className="label-text-alt text-error">*</span>
             </label>
             <input
@@ -685,7 +600,7 @@ export default function CreateClient({
                 onChange={handleCheckboxChange}
                 className="checkbox"
               />
-              <span className="label-text">Blacklist this client</span>
+              <span className="label-text">{t("client.blacklistClient")}</span>
             </label>
           </div>
 
@@ -693,13 +608,13 @@ export default function CreateClient({
             <>
               <div className="md:col-span-3">
                 <h2 className="font-semibold text-lg divider">
-                  Company Information
+                  {t("client.companyInformation")}
                 </h2>
               </div>
 
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Company Name:</span>
+                  <span className="label-text">{t("client.companyName")}:</span>
                 </label>
                 <input
                   type="text"
@@ -719,7 +634,7 @@ export default function CreateClient({
 
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Registration Number:</span>
+                  <span className="label-text">{t("client.registrationNumber")}:</span>
                 </label>
                 <input
                   type="text"
@@ -747,7 +662,7 @@ export default function CreateClient({
               }`}
               disabled={isSubmitting || isSaving}
             >
-              {isSubmitting || isSaving ? "Saving..." : "Create Client"}
+              {isSubmitting || isSaving ? t("common.saving") : t("client.createClient")}
             </button>
           </div>
         </form>
