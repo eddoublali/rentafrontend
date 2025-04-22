@@ -1,76 +1,122 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { createContext, useContext, useState, useEffect } from "react";
+import api from "../services/api";
 
-// Create a context for Infraction
 const InfractionContext = createContext();
 
-
-// Create a provider component
 export const InfractionProvider = ({ children }) => {
   const [infractions, setInfractions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Fetch all infractions
   const fetchInfractions = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('/infraction');
-    //   console.log('API Response:', response.data.infractions);
-      // Correctly access the infractions array from the response
+      const response = await api.get("/infraction");
+
       setInfractions(response.data.infractions || []);
     } catch (err) {
-      console.error('Error fetching infractions:', err);
-      setError('Failed to fetch infractions');
+      console.error("Error fetching infractions:", err);
+      setError("Failed to fetch infractions");
       setInfractions([]);
     } finally {
       setLoading(false);
     }
   };
 
-  // Create a new infraction
+  const getOneInfraction = async (id) => {
+    setLoading(true);
+    try {
+      const response = await api.get(`/infraction/${id}`);
+      return {
+        success: true,
+        data: response.data.data,
+      };
+    } catch (err) {
+      console.error("Error fetching infraction:", err);
+      return {
+        success: false,
+        message: err.response?.data?.message || "Failed to fetch infraction",
+        error: err,
+      };
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const createInfraction = async (infractionData) => {
     try {
-      const response = await axios.post('/infraction', infractionData);
-      setInfractions((prevInfractions) => [...prevInfractions, response.infractions]);
+      const response = await api.post("/infraction", infractionData);
+      console.log("Create infraction response:", response);
+      console.log("Response data:", response.data);
+      setInfractions((prevInfractions) => [
+        ...prevInfractions,
+        response.data.infraction,
+      ]);
+      return {
+        success: true,
+        message: "Infraction created successfully",
+        data: response.data,
+      };
     } catch (err) {
-      setError('Failed to create infraction');
+      console.error("Error creating infraction:", err);
+      console.error("Error response:", err.response?.data || err.message);
+      setError("Failed to create infraction");
+
+      return {
+        success: false,
+        message: err.response?.data?.message || "Failed to create infraction",
+        error: err,
+      };
     }
   };
 
-  // Update an existing infraction
   const updateInfraction = async (id, updatedData) => {
     try {
-      const response = await axios.put(`/infraction/${id}`, updatedData);
+      const response = await api.put(`/infraction/${id}`, updatedData);
+
+      console.log("Update response:", response);
+
       setInfractions((prevInfractions) =>
         prevInfractions.map((infraction) =>
-          infraction.id === id ? response.infractions : infraction
+          infraction.id === id ? response.data.data : infraction
         )
       );
+
+      return {
+        success: true,
+        message: response.data.message,
+        data: response.data.data,
+      };
     } catch (err) {
-      setError('Failed to update infraction');
+      console.error(err);
+      console.error(err.response?.data || err.message);
+      setError("Failed to update infraction");
+
+      return {
+        success: false,
+        message: err.response?.data?.message || "Failed to update infraction",
+        error: err,
+      };
     }
   };
 
-  // Delete an infraction
   const deleteInfraction = async (id) => {
     try {
-      await axios.delete(`/infraction/${id}`);
+      await api.delete(`/infraction/${id}`);
       setInfractions((prevInfractions) =>
         prevInfractions.filter((infraction) => infraction.id !== id)
       );
     } catch (err) {
-      setError('Failed to delete infraction');
+      setError("Failed to delete infraction");
     }
   };
 
-  // Delete all infractions
   const deleteAllInfractions = async () => {
     try {
-      await axios.delete('/infraction');
+      await api.delete("/infraction");
       setInfractions([]);
     } catch (err) {
-      setError('Failed to delete all infractions');
+      setError("Failed to delete all infractions");
     }
   };
 
@@ -84,10 +130,12 @@ export const InfractionProvider = ({ children }) => {
         infractions,
         loading,
         error,
+        fetchInfractions,
         createInfraction,
         updateInfraction,
         deleteInfraction,
         deleteAllInfractions,
+        getOneInfraction,
       }}
     >
       {children}
@@ -95,8 +143,6 @@ export const InfractionProvider = ({ children }) => {
   );
 };
 
-// Create a custom hook to use the InfractionContext
 export const useInfraction = () => {
-    return useContext(InfractionContext);
-  };
-  
+  return useContext(InfractionContext);
+};

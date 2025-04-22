@@ -3,6 +3,7 @@ import { Eye, EyeOff } from 'lucide-react'; // 👈 Import eye icons
 import { useUser } from '../../../context/UserContext'; // Import UserContext
 import { z } from 'zod';
 import { useNavigate } from 'react-router-dom';
+import { t } from 'i18next';
 
 // Create Zod schema for validation
 const userSchema = z.object({
@@ -49,7 +50,7 @@ export default function UserForm({ user, onSubmit }) {
           if (response && !response.success) {
             // Handle update errors
             if (response.error === "Email already exists") {
-              setErrors(prev => ({ ...prev, email: "Email already exists" }));
+              setErrors(prev => ({ ...prev, email: t("user.Emailexists") }));
             } else {
               setErrors(prev => ({ ...prev, general: response.error || "Failed to update user" }));
             }
@@ -103,13 +104,13 @@ export default function UserForm({ user, onSubmit }) {
     
 
     <div className="flex justify-between items-center mb-6">
-    <h2 className="text-xl font-semibold mb-4">{user ? 'Edit User' : 'Create New User'}</h2>
+    <h2 className="text-xl font-semibold mb-4">{user ? t("user.createUser") : t("user.createUser") }</h2>
         <button
           type="button"
           onClick={() => navigate('/users')}
           className="btn btn-ghost"
         >
-          Cancel
+          {t("common.cancel")}
         </button>
     </div>
 
@@ -123,7 +124,7 @@ export default function UserForm({ user, onSubmit }) {
       {/* Name Input */}
       <div className="form-control mb-4">
         <label className="label" htmlFor="name">
-          <span className="label-text">Name</span>
+          <span className="label-text">{t("user.name") }</span>
         </label>
         <input
           type="text"
@@ -138,7 +139,7 @@ export default function UserForm({ user, onSubmit }) {
       {/* Email Input */}
       <div className="form-control mb-4">
         <label className="label" htmlFor="email">
-          <span className="label-text">Email</span>
+          <span className="label-text">{t("user.email") }</span>
         </label>
         <input
           type="email"
@@ -153,7 +154,7 @@ export default function UserForm({ user, onSubmit }) {
       {/* Password Input with toggle */}
       <div className="form-control mb-4 relative">
         <label className="label" htmlFor="password">
-          <span className="label-text">Password</span>
+          <span className="label-text">{t("user.password") }</span>
         </label>
     
          <input
@@ -176,7 +177,7 @@ export default function UserForm({ user, onSubmit }) {
       {/* Role Select Dropdown */}
       <div className="form-control mb-4">
         <label className="label" htmlFor="role">
-          <span className="label-text">Role</span>
+          <span className="label-text">{t("user.role") }</span>
         </label>
         <select
           id="role"
@@ -184,9 +185,9 @@ export default function UserForm({ user, onSubmit }) {
           onChange={handleChange}
           className={`select select-bordered w-full ${errors.role ? 'select-error' : ''}`}
         >
-          <option value="ADMIN">ADMIN</option>
-          <option value="ACCOUNTANT">ACCOUNTANT</option>
-          <option value="ADMINISTRATEUR">ADMINISTRATEUR</option>
+          <option value="ADMIN">{t("user.Admin") }</option>
+          <option value="ACCOUNTANT">{t("user.Accountant") }</option>
+          <option value="ADMINISTRATEUR">{t("user.Administrator") }</option>
         </select>
         {errors.role && <p className="text-error text-xs mt-1">{errors.role}</p>}
       </div>
@@ -196,7 +197,7 @@ export default function UserForm({ user, onSubmit }) {
         type="submit"
         className="btn bg-sky-600 text-white w-full mt-2"
       >
-        {user ? 'Update User' : 'Create User'}
+        {user ? t("user.UpdateUser") : t("user.CreateUser") }
       </button>
     </form>
   </div>

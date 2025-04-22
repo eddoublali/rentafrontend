@@ -121,7 +121,7 @@ export default function ShowReservation() {
             <h2 className="card-title mb-4">{t("reservation.VehicleClientInfo")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex w-full justify-between items-center p-5 rounded bg-gray-50">
-                <p className="text-sm font-medium text-gray-500">
+                <p className="text-lg font-medium text-gray-500">
                 {t("reservation.vehicle")}
                 </p>
                 <p className="text-lg text-gray-900  text-right">
@@ -132,7 +132,7 @@ export default function ShowReservation() {
 
 
               <div className="flex gap-2 p-5 rounded bg-gray-50 w-full  justify-between">
-                <p className="block text-sm font-medium text-gray-500">
+                <p className="block text-lg font-medium text-gray-500">
                 {t("reservation.PrimaryClient")}
                 </p>
                 <p className="text-lg text-gray-900  text-right">
@@ -141,7 +141,7 @@ export default function ShowReservation() {
               </div>
 
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
-                <p className="block text-sm font-medium text-gray-500">
+                <p className="block text-lg font-medium text-gray-500">
                 {t("reservation.secondDriver")}
                 </p>
                 <p className="text-lg text-gray-900  text-right">
@@ -156,7 +156,7 @@ export default function ShowReservation() {
             <h2 className="card-title mt-8 mb-4">{t("reservation.ReservationDetails")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
-                <p className="block text-sm font-medium text-gray-500">
+                <p className="block text-lg font-medium text-gray-500">
                 {t("reservation.startDate")}
                 </p>
                 <p className="text-lg text-gray-900  text-right">
@@ -164,7 +164,7 @@ export default function ShowReservation() {
                 </p>
               </div>
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
-                <p className="block text-sm font-medium text-gray-500">
+                <p className="block text-lg font-medium text-gray-500">
                 {t("reservation.endDate")}
                 </p>
                 <p className="text-lg text-gray-900  text-right">
@@ -172,7 +172,7 @@ export default function ShowReservation() {
                 </p>
               </div>
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
-                <p className="block text-sm font-medium text-gray-500">
+                <p className="block text-lg font-medium text-gray-500">
                 {t("reservation.totalAmount")}
                 </p>
                 <p className="text-lg text-gray-900  text-right">
@@ -180,7 +180,7 @@ export default function ShowReservation() {
                 </p>
               </div>
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
-                <p className="block text-sm font-medium text-gray-500">
+                <p className="block text-lg font-medium text-gray-500">
                 {t("reservation.additionalCharge")}
 
                 </p>
@@ -189,7 +189,7 @@ export default function ShowReservation() {
                 </p>
               </div>
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
-                <p className="block text-sm font-medium text-gray-500">
+                <p className="block text-lg font-medium text-gray-500">
                 {t("reservation.paymentMethod")}
                 </p>
                 <p className="text-lg text-gray-900  text-right">
@@ -197,7 +197,7 @@ export default function ShowReservation() {
                 </p>
               </div>
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
-                <p className="block text-sm font-medium text-gray-500">
+                <p className="block text-lg font-medium text-gray-500">
                 {t("reservation.paymentStatus")}
                 </p>
                 <p className="text-lg text-gray-900  text-right">
@@ -211,7 +211,7 @@ export default function ShowReservation() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
-                <p className="block text-sm font-medium text-gray-500">
+                <p className="block text-lg font-medium text-gray-500">
                   {t("reservation.deliveryLocation")}
                 </p>
                 <p className="text-lg text-gray-900  text-right">
@@ -219,7 +219,7 @@ export default function ShowReservation() {
                 </p>
               </div>
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
-                <p className="block text-sm font-medium text-gray-500">
+                <p className="block text-lg font-medium text-gray-500">
                  {t("reservation.returnLocation")}
                 </p>
                 <p className="text-lg text-gray-900  text-right">
@@ -232,7 +232,7 @@ export default function ShowReservation() {
             <h2 className="card-title mt-8 mb-4">{t("reservation.VehicleStatus")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
-                <p className="block text-sm font-medium text-gray-500">
+                <p className="block text-lg font-medium text-gray-500">
                   {t("reservation.fuelLevel")}
                 </p>
                 <p className="text-lg text-gray-900  text-right">
@@ -240,7 +240,7 @@ export default function ShowReservation() {
                 </p>
               </div>
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
-                <p className="block text-sm font-medium text-gray-500">
+                <p className="block text-lg font-medium text-gray-500">
                     {t("reservation.departureKm")}
                 </p>
                 <p className="text-lg text-gray-900  text-right">
@@ -248,7 +248,7 @@ export default function ShowReservation() {
                 </p>
               </div>
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
-                <p className="block text-sm font-medium text-gray-500">
+                <p className="block text-lg font-medium text-gray-500">
                   {t("reservation.status")}
                 </p>
                 <p className="text-lg text-gray-900  text-right">
@@ -261,7 +261,7 @@ export default function ShowReservation() {
             <h2 className="card-title mt-8 mb-4">{t("reservation.AdditionalDetails")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
-                <p className="block text-sm font-medium text-gray-500">
+                <p className="block text-lg font-medium text-gray-500">
                 {t("reservation.accessories")}
                 </p>
                 <div className="text-lg text-gray-900  text-right">
@@ -278,7 +278,7 @@ export default function ShowReservation() {
               </div>
           
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50">
-                <p className="block text-sm font-medium text-gray-500">
+                <p className="block text-lg font-medium text-gray-500">
                 {t("reservation.documents")}
                 </p>
                 <div className="text-lg text-gray-900  text-right">

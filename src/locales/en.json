@@ -237,12 +237,43 @@
 
   "infraction": {
     "infractions": "Infractions",
-    "infractionList": "List of Infractions"
+    "infractionList": "List of Infractions",
+    "createInfraction": "Create Infraction", 
+    "updateInfraction": "Update Infraction", 
+    "viewInfraction": "View Infraction", 
+    "infractionDetails": "Infraction Details", 
+    "client": "Client", 
+    "vehicle": "Vehicle", 
+    "infractionType": "Infraction Type", 
+    "fineAmount": "Fine Amount", 
+    "infractionDate": "Infraction Date", 
+    "status": "Status", 
+    "selectType": "Select Infraction Type", 
+    "noInfractionsFound": "No infractions found", 
+    "deleteInfraction": "Delete Infraction", 
+    "deleteConfirmation": "Are you sure you want to delete this infraction?", 
+    "payInfraction": "Pay Infraction", 
+    "infractionPaid": "Infraction Paid", 
+    "types": { 
+      "speeding": "Speeding", 
+      "parking": "Parking Violation", 
+      "red_light": "Red Light Violation", 
+      "no_insurance": "No Insurance", 
+      "driving_license": "Driving License Issue", 
+      "other": "Other Violation" 
+    }
+    ,"type":"Type",
+    "addInfraction":"Add Infraction",
+    "deleteMessage":"Are you sure you want to delete this Infraction?"
+    ,"deleteTitle":"Delete Confirmation"
+    
   },
+  
   "contract": {
     "contractList": "List of Contracts",
     "toBeImplemented": "Contract list to be implemented."
   },
+  
   "common": {
     "actions": "Actions",
     "confirm": "Confirm",
@@ -256,10 +287,26 @@
     "edit": "Edit",
     "delete": "Delete",
     "na": "N/A",
-
-    "no": "No"
+    "no": "No",
+    "searchNotFound": "No users match your search criteria.",
+    "searchNotFoundMessage": "Try adjusting your filters.",
+    "save": "Save",
+    "create": "Create",
+    "update": "Update",
+    "yes": "Yes",
+    "createNew": "Create New",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "from": "From",
+    "to": "To",
+    "all": "All",
+    "deleting": "Deleting...",
+    "loading": "Loading..."
   },
+  
   "dropdown": "right",
+  
   "accessories": {
     "climatisation": "Climatisation",
     "vest": "Gilet",
@@ -269,6 +316,7 @@
     "babySeat": "Siege bebe",
     "fireExtinguisher": "Extincteur"
   },
+  
   "documents": {
     "registrationCard": "Carte grise",
     "insurance": "Assurance",
@@ -277,12 +325,16 @@
     "authorization": "Autorisation",
     "contract": "Contrat"
   },
+  
   "status": {
     "pending": "Pending",
     "confirmed": "Confirmed",
     "completed": "Completed",
-    "canceled": "Canceled"
+    "canceled": "Canceled",
+    "paid": "Paid",
+    "unpaid": "Unpaid"
   },
+  
   "payment": {
     "cash": "Cash",
     "creditCard": "Credit Card",
@@ -290,6 +342,7 @@
     "paid": "Paid",
     "failed": "Failed"
   },
+  
   "clients": {
     "return": "Return to Clients List",
     "clientNotFound": "Client Not Found",
@@ -297,6 +350,7 @@
     "deleteTitle": "Delete Confirmation",
     "deleteMessage": "Are you sure you want to delete this client?"
   },
+  
   "nationalities": {
     "moroccan": "Moroccan",
     "algerian": "Algerian",
@@ -309,25 +363,123 @@
     "british": "British",
     "canadian": "Canadian"
   },
+  
   "settings": "Settings",
   "profile": "Profile",
   "profile.description": "Update your personal info and email address.",
-  "theme": "Theme",
+ 
   "theme.description": "Toggle between light and dark mode.",
   "language": "Language",
   "appearance": "Appearance",
   "appearance.description": "Change theme and interface style.",
   "general": "General",
   "general.description": "Other general configuration options.",
-   
+
   "user": {
     "UserDetails": "User Details",
     "Back": "Back To Users List",
-    "name": "User Name",
-    "email": "Email Address",
-    "role": "User Role",
+    "name": "Name",
+    "email": "Email",
+    "role": "Role",
     "status": "User Status",
-    "notFoundmessage": "The User you are looking for doesn't exist or has been removed."
-    ,"userNotfound":"User Not Found"
+    "notFoundmessage": "The User you are looking for doesn't exist or has been removed.",
+    "userNotfound": "User Not Found",
+    "Searchemail": "Search by email",
+    "Searchname": "Search by name",
+    "AllRoles": "All Roles",
+    "Admin": "Admin",
+    "User": "User",
+    "Administrator": "Administrator",
+    "Accountant": "Accountant",
+    "deleteTitle": "Delete Confirmation",
+    "deleteMessage": "Are you sure you want to delete this user?",
+    "Emailexists": "Email already exists",
+    "createUser": "Create New User",
+    "EditUser": "Edit User",
+    "password": "Password",
+    "CreateUser":"Create User",
+    "UpdateUser":"Update User"
+  },
+  
+  "errors": { 
+    "failedToCreateInfraction": "Failed to create infraction", 
+    "failedToUpdateInfraction": "Failed to update infraction", 
+    "failedToDeleteInfraction": "Failed to delete infraction", 
+    "failedToFetchInfractions": "Failed to fetch infractions" 
+  },
+  
+  "tables": { 
+    "infraction": { 
+      "id": "ID", 
+      "client": "Client", 
+      "vehicle": "Vehicle", 
+      "type": "Type", 
+      "amount": "Amount", 
+      "date": "Date", 
+      "status": "Status", 
+      "actions": "Actions" 
+    } 
+  },
+  
+  "tooltip": { 
+    "editInfraction": "Edit infraction", 
+    "deleteInfraction": "Delete infraction", 
+    "viewInfraction": "View infraction details", 
+    "payInfraction": "Mark as paid" 
+  },
+  
+  "confirmation": { 
+    "deleteInfractionTitle": "Delete Infraction", 
+    "deleteInfractionMessage": "Are you sure you want to delete this infraction? This action cannot be undone.", 
+    "confirm": "Confirm", 
+    "cancel": "Cancel" 
+  },
+  
+  "filters": { 
+    "byType": "Filter by type", 
+    "byStatus": "Filter by status", 
+    "byDate": "Filter by date", 
+    "byClient": "Filter by client", 
+    "byVehicle": "Filter by vehicle", 
+    "clearFilters": "Clear filters" 
+  },
+  
+  "statistics": { 
+    "totalInfractions": "Total Infractions", 
+    "paidInfractions": "Paid Infractions", 
+    "unpaidInfractions": "Unpaid Infractions", 
+    "mostCommonType": "Most Common Type", 
+    "highestFine": "Highest Fine", 
+    "averageFine": "Average Fine" 
+  },
+  
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "custom": "Custom",
+    "primary": "Primary Color",
+    "secondary": "Secondary Color",
+    "accent": "Accent Color",
+    "background": "Background Color",
+    "text": "Text Color",
+    "error": "Error Color",
+    "warning": "Warning Color",
+    "success": "Success Color",
+    "info": "Info Color",
+    "reset": "Reset to Default",
+    "apply": "Apply Theme",
+    "preview": "Preview Theme",
+    "customTheme": "Custom Theme",
+    "themeSettings": "Theme Settings",
+    "fontFamily": "Font Family",
+    "fontSize": "Font Size",
+    "borderRadius": "Border Radius",
+    "shadows": "Shadows",
+    "animations": "Animations",
+    "density": "Interface Density",
+    "compact": "Compact",
+    "comfortable": "Comfortable",
+    "spacious": "Spacious"
   }
 }
