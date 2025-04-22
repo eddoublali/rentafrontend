@@ -1,8 +1,6 @@
 import { z } from "zod";
-
-// Helper function to validate if the date is in the future
 const isFutureDate = (val) => {
-  if (!val) return true; // Allow empty/undefined for optional dates
+  if (!val) return true;
   const date = new Date(val);
   return !isNaN(date.getTime()) && date >= new Date();
 };
@@ -14,19 +12,19 @@ const clientSchema = z.object({
   address: z.string().min(1, "Address is required"),
   cin: z.string().min(1, "CIN is required"),
   gender: z.enum(["Male", "Female"], { message: "Invalid gender selection" }).default('Male'),
-  
+
   cinExpiry: z
     .string()
     .refine(isFutureDate, { message: "CIN is expired or invalid date" }),
-  
+
   license: z.string().min(1, "License is required"),
-  
+
   licenseExpiry: z
     .string()
     .refine(isFutureDate, { message: "License is expired or invalid date" }),
-  
+
   blacklisted: z.coerce.boolean().default(false),
-  
+
   nationality: z.enum([
     "Moroccan",
     "Algerian",
@@ -39,27 +37,27 @@ const clientSchema = z.object({
     "British",
     "Canadian",
   ], { message: "Invalid nationality selected" }),
-  
+
   passportNumber: z.string().optional(),
-  
+
   passportExpiry: z
     .string()
     .optional()
     .refine(isFutureDate, { message: "Passport is expired or invalid date" }),
-  
+
   birthDate: z
-  .string()
-  .refine((val) => {
-    if (!val) return true; // Allow empty
-    const date = new Date(val);
-    return !isNaN(date.getTime()) && date <= new Date();
-  }, { message: "Birth date must be in the past" }),
-  
+    .string()
+    .refine((val) => {
+      if (!val) return true;
+      const date = new Date(val);
+      return !isNaN(date.getTime()) && date <= new Date();
+    }, { message: "Birth date must be in the past" }),
+
   companyName: z.string().optional(),
   registrationNumber: z.string().optional(),
-  
+
   clientType: z.enum(["PERSONAL", "ENTERPRISE"]).default("PERSONAL"),
-  
+
   cinimage: z.string().min(1, "CIN image is required"),
   licenseimage: z.string().min(1, "License image is required"),
 });

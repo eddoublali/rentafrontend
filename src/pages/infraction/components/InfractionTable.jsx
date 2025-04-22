@@ -38,8 +38,8 @@ console.log(infractions)
           {(!infractions || infractions.length === 0) ? (
             <tr>
               <td colSpan={8} className="text-center py-10 text-gray-500">
-                <p className="text-lg">No infractions available.</p>
-                <p className="mt-2">Add your first infractions to get started.</p>
+                <p className="text-lg">{t("infraction.Noinfractions")}</p>
+                <p className="mt-2">{t("infraction.Addfirstinfractions")}</p>
               </td>
             </tr>
           ) : (
@@ -48,7 +48,7 @@ console.log(infractions)
                 <td>{infraction?.infractionType}</td>
                 <td>{new Date(infraction?.infractionDate).toLocaleDateString()}</td>
                 <td>{infraction?.fineAmount} {t("dh")}</td>
-                <td>{infraction?.client?.name} </td>
+                <td>{infraction?.client?.name } </td>
                 <td>{infraction?.vehicle?.brand} </td>
                 <td >
                 <span className={getStatusColor(infraction?.status)}>

@@ -7,12 +7,20 @@ import LoadingSpiner from "../../../components/LodingSpiner";
 import ConfirmModal from "../../../components/ConfirmModal";
 import InfractionTable from "./InfractionTable";
 import { t } from "i18next";
+const INFRACTION_TYPES = [
+  'SPEEDING',
+  'PARKING',
+  'RED_LIGHT',
+  'NO_INSURANCE',
+  'DRIVING_LICENSE',
+  'OTHER'
+];
 
 export default function AllInfraction() {
   const { user } = useAuth();
   const [showFilters, setShowFilters] = useState(false);
   const { infractions, deleteInfraction, loading, fetchInfractions } = useInfraction();
-  const [licensePlateFilter, setLicensePlateFilter] = useState("");
+  const [clientNameFilter, setClientNameFilter] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [selectedId, setSelectedId] = useState(null);
@@ -32,17 +40,20 @@ export default function AllInfraction() {
     deleteInfraction(selectedId);
   };
 
-  const filteredInfractions = infractions?.filter((infraction) =>
-    (licensePlateFilter ? 
-      infraction.vehicle?.licensePlate.toLowerCase().includes(licensePlateFilter.toLowerCase()) : 
-      true) &&
-    (typeFilter ? 
-      infraction.type.toLowerCase().includes(typeFilter.toLowerCase()) : 
-      true) &&
-    (statusFilter ? 
-      infraction.status.toLowerCase() === statusFilter.toLowerCase() : 
-      true)
-  );
+  const filteredInfractions = infractions?.filter((infraction) => {
+    const clientNameMatch = !clientNameFilter || 
+      (infraction.client && 
+       infraction.client.name && 
+       infraction.client.name.toLowerCase().includes(clientNameFilter.toLowerCase()));
+    
+    const typeMatch = !typeFilter || infraction.type === typeFilter;
+    
+    const statusMatch = !statusFilter || 
+      (infraction.status && 
+       infraction.status.toLowerCase() === statusFilter.toLowerCase());
+    
+    return clientNameMatch && typeMatch && statusMatch;
+  });
 
   if (loading) return <LoadingSpiner />;
 
@@ -70,25 +81,30 @@ export default function AllInfraction() {
         </button>
       </div>
 
-      {/* Filters */}
+  
       <div className={`${
           showFilters ? "flex" : "hidden"
         } mb-4 md:flex flex-col md:flex-row gap-4 md:gap-4`}>
         <input
           type="text"
-          placeholder="License Plate"
+          placeholder={t("reservation.serchbyclient")}
           className="input input-bordered w-full md:w-1/3"
-          value={licensePlateFilter}
-          onChange={(e) => setLicensePlateFilter(e.target.value)}
+          value={clientNameFilter}
+          onChange={(e) => setClientNameFilter(e.target.value)}
         />
       
-        <input
-          type="text"
-          placeholder="Infraction Type"
-          className="input input-bordered w-full md:w-1/3"
+        <select
+          className="select select-bordered w-full md:w-1/3 cursor-pointer"
           value={typeFilter}
           onChange={(e) => setTypeFilter(e.target.value)}
-        />
+        >
+          <option value="">{t("common.all")}</option>
+          {INFRACTION_TYPES.map((type) => (
+            <option key={type} value={type}>
+              {t(`infraction.types.${type.toLowerCase()}`)}
+            </option>
+          ))}
+        </select>
 
         <select
           className="select select-bordered w-full md:w-1/3 cursor-pointer"
@@ -100,6 +116,7 @@ export default function AllInfraction() {
           <option value="paid">{t("status.paid")}</option>
           <option value="unpaid">{t("status.unpaid")}</option>
         </select>
+    
       </div>
 
       <InfractionTable 

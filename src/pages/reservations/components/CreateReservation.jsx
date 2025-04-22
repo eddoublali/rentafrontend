@@ -4,11 +4,11 @@ import { useVehicle } from "../../../context/VehicleContext";
 import { useReservation } from "../../../context/ReservationContext";
 import { useNavigate } from "react-router-dom";
 import { reservationSchema } from "./ReservationValidation";
-import { useTranslation } from "react-i18next"; // Import useTranslation hook
+import { useTranslation } from "react-i18next"; 
 
 export default function CreateReservation() {
   const navigate = useNavigate();
-  const { t } = useTranslation(); // Initialize the translation hook
+  const { t } = useTranslation(); 
   const { clients, fetchClients, loading: clientsLoading } = useClient();
   const {
     fetchVehicles,
@@ -52,9 +52,9 @@ export default function CreateReservation() {
   const accessoriesRef = useRef(null);
   const documentsRef = useRef(null);
 
-  // Using translation keys for accessories
+ 
   const ALLOWED_ACCESSORIES = [
-    "accessories.climatisation", // Replace string values with translation keys
+    "accessories.climatisation", 
     "accessories.vest",
     "accessories.triangle",
     "accessories.spareTire",
@@ -63,7 +63,6 @@ export default function CreateReservation() {
     "accessories.fireExtinguisher",
   ];
 
-  // Using translation keys for documents
   const ALLOWED_DOCUMENTS = [
     "documents.registrationCard",
     "documents.insurance",
@@ -185,7 +184,6 @@ export default function CreateReservation() {
 
     setIsSaving(true);
     try {
-      // For submission, we need to translate keys back to actual values
       const translatedAccessories = formData.accessories.map(key => t(key));
       const translatedDocuments = formData.documents.map(key => t(key));
       
@@ -426,7 +424,6 @@ export default function CreateReservation() {
           )}
         </div>
 
-        {/* Accessories - DaisyUI Dropdown */}
         <div className="dropdown" ref={accessoriesRef}>
           <label className="label">
             <span className="label-text">{t('reservation.accessories')}</span>

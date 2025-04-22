@@ -44,6 +44,11 @@ import AllInfraction from "../pages/infraction/components/AllInfraction";
 import CreateInfraction from "../pages/infraction/components/CreateInfraction";
 import EditInfraction from "../pages/infraction/components/EditInfraction";
 import ShowInfraction from "../pages/infraction/components/ShowInfraction";
+import AllDocuments from "../pages/documents/AllDocuments";
+import AllAccident from "../pages/accident/components/AllAccident";
+import CreateAccident from "../pages/accident/components/CreateAccident";
+import EditAccident from "../pages/accident/components/EditAccident";
+import HomePagee from "../pages/Dashboard/HomePagee";
 
 export const routes = createBrowserRouter([
   // Public routes
@@ -58,10 +63,10 @@ export const routes = createBrowserRouter([
       {
         element: <Layout />, // Your common layout with Navbar and Sidebar
         children: [
-          { path: "/", element: <HomePage /> },
+          { path: "/", element: <HomePagee/> },
           { path: "/settings", element: <SettingsPage /> },
 
-          // ADMIN ONLY
+        
           {
             element: <ProtectedRoute allowedRoles={["ADMIN","ADMINISTRATEUR"]} />,
             children: [
@@ -102,6 +107,12 @@ export const routes = createBrowserRouter([
               { path: "/vehicles/view/:id", element: <VehicleDetails /> },
               { path: "/vehicles/add", element: <CreateVehicle /> },
               { path: "/vehicles/edit/:id", element: <EditVehicle /> },
+
+              { path: "/documents", element: <AllDocuments /> },
+
+              { path: "/accident", element: <AllAccident /> },
+                { path: "/accident/add", element: <CreateAccident /> },
+                { path: "/accident/edit/:id", element: <EditAccident /> },
             ],
           },
 
@@ -143,12 +154,11 @@ export const routes = createBrowserRouter([
       },
     ],
   },
-  // Unauthorized route
+
   {
     path: "/unauthorized",
     element: <UnauthorizedPage />,
   },
-  // Fallback (NotFound) route
   {
     path: "*",
     element: <NotFoundPage />,

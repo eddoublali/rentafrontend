@@ -66,7 +66,6 @@ export default function AllReservation() {
           </button>
         )}
       </div>
-      {/* Toggle Filter Icon on Small Screens */}
       <div className="md:hidden flex justify-end mb-4">
         <button
           onClick={() => setShowFilters(!showFilters)}
@@ -77,7 +76,6 @@ export default function AllReservation() {
         </button>
       </div>
 
-      {/* Filters */}
       <div
         className={`${
           showFilters ? "flex" : "hidden"

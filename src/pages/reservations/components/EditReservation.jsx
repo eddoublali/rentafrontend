@@ -5,7 +5,7 @@ import { useReservation } from "../../../context/ReservationContext";
 import { useNavigate, useParams } from "react-router-dom";
 import { reservationSchema } from "./ReservationValidation";
 import { t } from "i18next";
-import { z } from "zod"; // Add this import for Zod
+import { z } from "zod"; 
 import { ArrowLeft } from "lucide-react";
 
 export default function EditReservation({ title = "Edit Reservation" }) {
@@ -45,7 +45,7 @@ export default function EditReservation({ title = "Edit Reservation" }) {
     paymentStatus: "PENDING",
     note: "",
     accessories: [],
-    documents: [], // Lowercase for consistent access within component
+    documents: [], 
   });
 
   const [errors, setErrors] = useState({});
@@ -56,7 +56,6 @@ export default function EditReservation({ title = "Edit Reservation" }) {
   const accessoriesRef = useRef(null);
   const documentsRef = useRef(null);
 
-  // Use the actual values that the schema expects
   const ALLOWED_ACCESSORIES = [
     "Climatisation",
     "Gilet",
@@ -96,7 +95,6 @@ export default function EditReservation({ title = "Edit Reservation" }) {
     "Contrat": "documents.contract",
   };
 
-  // Fetch reservation and initialize form data
   useEffect(() => {
     const fetchData = async () => {
       if (!id || isNaN(id)) {
@@ -107,7 +105,6 @@ export default function EditReservation({ title = "Edit Reservation" }) {
       const response = await fetchReservationById(id);
       if (response.success && response.data) {
         const reservation = response.data;
-        // Validate clientSeconId against clients
         const clientSeconExists = reservation.clientSeconId
           ? clients.some((c) => c.id === reservation.clientSeconId)
           : true;
@@ -115,7 +112,6 @@ export default function EditReservation({ title = "Edit Reservation" }) {
           setErrors({ general: "Second driver client does not exist" });
         }
         
-        // Handle the case where Documents may be capitalized in the API response
         const documentsList = reservation.Documents || reservation.documents || [];
         
         setFormData({
@@ -140,10 +136,10 @@ export default function EditReservation({ title = "Edit Reservation" }) {
           paymentStatus: reservation.paymentStatus || "PENDING",
           note: reservation.note || "",
           accessories: reservation.accessories || [],
-          documents: reservation.documents || [], // Use the normalized documents list
+          documents: reservation.documents || [], 
         });
         
-        console.log("Loaded documents:", reservation.Documents); // Debug log to see what's being loaded
+        console.log("Loaded documents:", reservation.Documents); 
       } else {
         setNotFound(true);
       }
@@ -154,14 +150,12 @@ export default function EditReservation({ title = "Edit Reservation" }) {
     fetchData();
   }, [id]);
 
-  // Fetch available vehicles
   useEffect(() => {
     if (formData.startDate && formData.endDate && id) {
       fetchAvailableVehicles(formData.startDate, formData.endDate, parseInt(id));
     }
   }, [formData.startDate, formData.endDate, id]);
 
-  // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (accessoriesRef.current && !accessoriesRef.current.contains(event.target)) {
@@ -175,7 +169,6 @@ export default function EditReservation({ title = "Edit Reservation" }) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Calculate totalAmount
   useEffect(() => {
     if (formData.vehicleId && formData.startDate && formData.endDate) {
       const vehicle = vehicles.find((v) => v.id === parseInt(formData.vehicleId));
@@ -220,7 +213,6 @@ export default function EditReservation({ title = "Edit Reservation" }) {
   const validateForm = () => {
     try {
       reservationSchema.parse(formData);
-      // Additional validation for clientSeconId
       if (formData.secondDriver && formData.clientSeconId) {
         const clientSeconExists = clients.some(
           (c) => c.id === parseInt(formData.clientSeconId)
@@ -322,7 +314,6 @@ export default function EditReservation({ title = "Edit Reservation" }) {
 
   
 
-  // Combine available vehicles with the selected vehicle
   const reservationVehicle = vehicles.find((v) => v.id === parseInt(formData.vehicleId));
   const vehicleOptions = [
     ...(availableVehicles || []),

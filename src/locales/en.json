@@ -11,7 +11,8 @@
     "revenues": "Revenues",
     "expense": "Expense",
     "settings": "Settings",
-    "logout": "Logout"
+    "logout": "Logout",
+    "documents":"Documents"
   },
 
   "logo": "Logo",
@@ -238,42 +239,47 @@
   "infraction": {
     "infractions": "Infractions",
     "infractionList": "List of Infractions",
-    "createInfraction": "Create Infraction", 
-    "updateInfraction": "Update Infraction", 
-    "viewInfraction": "View Infraction", 
-    "infractionDetails": "Infraction Details", 
-    "client": "Client", 
-    "vehicle": "Vehicle", 
-    "infractionType": "Infraction Type", 
-    "fineAmount": "Fine Amount", 
-    "infractionDate": "Infraction Date", 
-    "status": "Status", 
-    "selectType": "Select Infraction Type", 
-    "noInfractionsFound": "No infractions found", 
-    "deleteInfraction": "Delete Infraction", 
-    "deleteConfirmation": "Are you sure you want to delete this infraction?", 
-    "payInfraction": "Pay Infraction", 
-    "infractionPaid": "Infraction Paid", 
-    "types": { 
-      "speeding": "Speeding", 
-      "parking": "Parking Violation", 
-      "red_light": "Red Light Violation", 
-      "no_insurance": "No Insurance", 
-      "driving_license": "Driving License Issue", 
-      "other": "Other Violation" 
-    }
-    ,"type":"Type",
-    "addInfraction":"Add Infraction",
-    "deleteMessage":"Are you sure you want to delete this Infraction?"
-    ,"deleteTitle":"Delete Confirmation"
+    "createInfraction": "Create Infraction",
+    "updateInfraction": "Update Infraction",
+    "viewInfraction": "View Infraction",
+    "infractionDetails": "Infraction Details",
+    "client": "Client",
+    "vehicle": "Vehicle",
+    "infractionType": "Infraction Type",
+    "fineAmount": "Fine Amount",
+    "infractionDate": "Infraction Date",
+    "status": "Status",
+    "selectType": "Select Infraction Type",
+    "noInfractionsFound": "No infractions found",
+    "deleteInfraction": "Delete Infraction",
+    "deleteConfirmation": "Are you sure you want to delete this infraction?",
+    "payInfraction": "Pay Infraction",
+    "infractionPaid": "Infraction Paid",
+    "types": {
+      "speeding": "Speeding",
+      "parking": "Parking Violation",
+      "red_light": "Red Light Violation",
+      "no_insurance": "No Insurance",
+      "driving_license": "Driving License Issue",
+      "other": "Other Violation"
+    },
+    "type": "Type",
+    "addInfraction": "Add Infraction",
+    "deleteMessage": "Are you sure you want to delete this Infraction?",
+    "deleteTitle": "Delete Confirmation",
+    "Noinfractions":"No infractions available.",
+    "Addfirstinfractions":"Add your first infractions to get started."
     
   },
-  
+
   "contract": {
     "contractList": "List of Contracts",
-    "toBeImplemented": "Contract list to be implemented."
+    "toBeImplemented": "Contract list to be implemented.",
+    "Contract":"Contract",
+    "Invoice":"Invoice",
+    "Devise":"Devise"
   },
-  
+
   "common": {
     "actions": "Actions",
     "confirm": "Confirm",
@@ -304,9 +310,9 @@
     "deleting": "Deleting...",
     "loading": "Loading..."
   },
-  
+
   "dropdown": "right",
-  
+
   "accessories": {
     "climatisation": "Climatisation",
     "vest": "Gilet",
@@ -316,7 +322,7 @@
     "babySeat": "Siege bebe",
     "fireExtinguisher": "Extincteur"
   },
-  
+
   "documents": {
     "registrationCard": "Carte grise",
     "insurance": "Assurance",
@@ -325,7 +331,7 @@
     "authorization": "Autorisation",
     "contract": "Contrat"
   },
-  
+
   "status": {
     "pending": "Pending",
     "confirmed": "Confirmed",
@@ -334,7 +340,7 @@
     "paid": "Paid",
     "unpaid": "Unpaid"
   },
-  
+
   "payment": {
     "cash": "Cash",
     "creditCard": "Credit Card",
@@ -342,7 +348,7 @@
     "paid": "Paid",
     "failed": "Failed"
   },
-  
+
   "clients": {
     "return": "Return to Clients List",
     "clientNotFound": "Client Not Found",
@@ -350,7 +356,7 @@
     "deleteTitle": "Delete Confirmation",
     "deleteMessage": "Are you sure you want to delete this client?"
   },
-  
+
   "nationalities": {
     "moroccan": "Moroccan",
     "algerian": "Algerian",
@@ -363,11 +369,11 @@
     "british": "British",
     "canadian": "Canadian"
   },
-  
+
   "settings": "Settings",
   "profile": "Profile",
   "profile.description": "Update your personal info and email address.",
- 
+
   "theme.description": "Toggle between light and dark mode.",
   "language": "Language",
   "appearance": "Appearance",
@@ -397,62 +403,62 @@
     "createUser": "Create New User",
     "EditUser": "Edit User",
     "password": "Password",
-    "CreateUser":"Create User",
-    "UpdateUser":"Update User"
+    "CreateUser": "Create User",
+    "UpdateUser": "Update User"
   },
-  
-  "errors": { 
-    "failedToCreateInfraction": "Failed to create infraction", 
-    "failedToUpdateInfraction": "Failed to update infraction", 
-    "failedToDeleteInfraction": "Failed to delete infraction", 
-    "failedToFetchInfractions": "Failed to fetch infractions" 
+
+  "errors": {
+    "failedToCreateInfraction": "Failed to create infraction",
+    "failedToUpdateInfraction": "Failed to update infraction",
+    "failedToDeleteInfraction": "Failed to delete infraction",
+    "failedToFetchInfractions": "Failed to fetch infractions"
   },
-  
-  "tables": { 
-    "infraction": { 
-      "id": "ID", 
-      "client": "Client", 
-      "vehicle": "Vehicle", 
-      "type": "Type", 
-      "amount": "Amount", 
-      "date": "Date", 
-      "status": "Status", 
-      "actions": "Actions" 
-    } 
+
+  "tables": {
+    "infraction": {
+      "id": "ID",
+      "client": "Client",
+      "vehicle": "Vehicle",
+      "type": "Type",
+      "amount": "Amount",
+      "date": "Date",
+      "status": "Status",
+      "actions": "Actions"
+    }
   },
-  
-  "tooltip": { 
-    "editInfraction": "Edit infraction", 
-    "deleteInfraction": "Delete infraction", 
-    "viewInfraction": "View infraction details", 
-    "payInfraction": "Mark as paid" 
+
+  "tooltip": {
+    "editInfraction": "Edit infraction",
+    "deleteInfraction": "Delete infraction",
+    "viewInfraction": "View infraction details",
+    "payInfraction": "Mark as paid"
   },
-  
-  "confirmation": { 
-    "deleteInfractionTitle": "Delete Infraction", 
-    "deleteInfractionMessage": "Are you sure you want to delete this infraction? This action cannot be undone.", 
-    "confirm": "Confirm", 
-    "cancel": "Cancel" 
+
+  "confirmation": {
+    "deleteInfractionTitle": "Delete Infraction",
+    "deleteInfractionMessage": "Are you sure you want to delete this infraction? This action cannot be undone.",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
   },
-  
-  "filters": { 
-    "byType": "Filter by type", 
-    "byStatus": "Filter by status", 
-    "byDate": "Filter by date", 
-    "byClient": "Filter by client", 
-    "byVehicle": "Filter by vehicle", 
-    "clearFilters": "Clear filters" 
+
+  "filters": {
+    "byType": "Filter by type",
+    "byStatus": "Filter by status",
+    "byDate": "Filter by date",
+    "byClient": "Filter by client",
+    "byVehicle": "Filter by vehicle",
+    "clearFilters": "Clear filters"
   },
-  
-  "statistics": { 
-    "totalInfractions": "Total Infractions", 
-    "paidInfractions": "Paid Infractions", 
-    "unpaidInfractions": "Unpaid Infractions", 
-    "mostCommonType": "Most Common Type", 
-    "highestFine": "Highest Fine", 
-    "averageFine": "Average Fine" 
+
+  "statistics": {
+    "totalInfractions": "Total Infractions",
+    "paidInfractions": "Paid Infractions",
+    "unpaidInfractions": "Unpaid Infractions",
+    "mostCommonType": "Most Common Type",
+    "highestFine": "Highest Fine",
+    "averageFine": "Average Fine"
   },
-  
+
   "theme": {
     "light": "Light",
     "dark": "Dark",

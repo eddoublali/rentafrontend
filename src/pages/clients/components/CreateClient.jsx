@@ -214,7 +214,10 @@ export default function CreateClient({
 
       if (!response.success) {
         if (response.error && response.error.includes("email")) {
-          setErrors((prev) => ({ ...prev, email: t("client.errorEmailExists") }));
+          setErrors((prev) => ({
+            ...prev,
+            email: t("client.errorEmailExists"),
+          }));
         } else {
           setErrors((prev) => ({
             ...prev,
@@ -231,13 +234,15 @@ export default function CreateClient({
       console.error("Error creating client:", error);
       setErrors((prev) => ({
         ...prev,
-        general: `${t("common.error")}: ${error.message || t("common.errorUnknown")}`,
+        general: `${t("common.error")}: ${
+          error.message || t("common.errorUnknown")
+        }`,
       }));
     } finally {
       setIsSubmitting(false);
     }
   };
-  
+
   const getInputClassName = (fieldName) => {
     return `input input-bordered w-full ${
       errors[fieldName] ? "input-error" : ""
@@ -509,7 +514,9 @@ export default function CreateClient({
             <>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">{t("client.passportNumber")}:</span>
+                  <span className="label-text">
+                    {t("client.passportNumber")}:
+                  </span>
                   <span className="label-text-alt text-error">*</span>
                 </label>
                 <input
@@ -530,7 +537,9 @@ export default function CreateClient({
 
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">{t("client.passportExpiry")}:</span>
+                  <span className="label-text">
+                    {t("client.passportExpiry")}:
+                  </span>
                   <span className="label-text-alt text-error">*</span>
                 </label>
                 <input
@@ -634,7 +643,9 @@ export default function CreateClient({
 
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">{t("client.registrationNumber")}:</span>
+                  <span className="label-text">
+                    {t("client.registrationNumber")}:
+                  </span>
                 </label>
                 <input
                   type="text"
@@ -662,7 +673,9 @@ export default function CreateClient({
               }`}
               disabled={isSubmitting || isSaving}
             >
-              {isSubmitting || isSaving ? t("common.saving") : t("client.createClient")}
+              {isSubmitting || isSaving
+                ? t("common.saving")
+                : t("client.createClient")}
             </button>
           </div>
         </form>

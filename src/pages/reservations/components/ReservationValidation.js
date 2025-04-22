@@ -1,7 +1,6 @@
-// src/validations/reservationSchema.js
 import { z } from 'zod';
 
-// Date string transformation
+
 const dateString = z.string().refine((str) => !isNaN(Date.parse(str)), {
   message: "Invalid date",
 }).transform((str) => new Date(str));

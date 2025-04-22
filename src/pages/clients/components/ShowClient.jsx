@@ -95,7 +95,7 @@ export default function ShowClient() {
       </>
     );
   }
-
+console.log(client)
 
 return (
   <div className="min-h-screen bg-gray-100 p-6">

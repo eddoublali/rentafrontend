@@ -29,7 +29,7 @@ export default function SettingsPage() {
    <div className="min-h-screen bg-base-200 p-8">
      <div className="max-w-7xl mx-auto">
        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-         {/* Profile Settings */}
+     
          <div className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow">
            <div className="card-body flex items-center gap-4">
              <User className="w-8 h-8 text-primary" />
@@ -40,7 +40,6 @@ export default function SettingsPage() {
            </div>
          </div>
 
-         {/* Theme Toggle */}
          <div className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow">
            <div className="card-body flex items-center gap-4">
              <ThemeToggle />
@@ -51,7 +50,6 @@ export default function SettingsPage() {
            </div>
          </div>
 
-         {/* Language Dropdown */}
          <div className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow">
            <div className="card-body flex items-center gap-4">
              <Globe className="w-8 h-8 text-primary" />
@@ -72,7 +70,6 @@ export default function SettingsPage() {
            </div>
          </div>
 
-         {/* Appearance Settings */}
          <div className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow">
            <div className="card-body flex items-center gap-4">
              <Palette className="w-8 h-8 text-primary" />
@@ -83,7 +80,6 @@ export default function SettingsPage() {
            </div>
          </div>
 
-         {/* General Settings */}
          <div className="card bg-base-100 shadow-md hover:shadow-lg transition-shadow">
            <div className="card-body flex items-center gap-4">
              <Settings2 className="w-8 h-8 text-primary" />

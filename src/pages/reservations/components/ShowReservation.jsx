@@ -117,7 +117,6 @@ export default function ShowReservation() {
 
         <div className="card bg-base-100 shadow-md">
           <div className="card-body">
-            {/* Vehicle and Client Info */}
             <h2 className="card-title mb-4">{t("reservation.VehicleClientInfo")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex w-full justify-between items-center p-5 rounded bg-gray-50">
@@ -152,7 +151,6 @@ export default function ShowReservation() {
               </div>
             </div>
 
-            {/* Dates and Payment */}
             <h2 className="card-title mt-8 mb-4">{t("reservation.ReservationDetails")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
@@ -206,7 +204,6 @@ export default function ShowReservation() {
               </div>
             </div>
 
-            {/* Locations */}
             <h2 className="card-title mt-8 mb-4">{t("reservation.LocationInformation")}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -228,7 +225,6 @@ export default function ShowReservation() {
               </div>
             </div>
 
-            {/* Vehicle Status */}
             <h2 className="card-title mt-8 mb-4">{t("reservation.VehicleStatus")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
@@ -257,7 +253,6 @@ export default function ShowReservation() {
               </div>
             </div>
 
-            {/* Accessories and Documents */}
             <h2 className="card-title mt-8 mb-4">{t("reservation.AdditionalDetails")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="flex items-center gap-2 p-5 rounded bg-gray-50  justify-between">
@@ -295,7 +290,6 @@ export default function ShowReservation() {
               </div>
             </div>
 
-            {/* Notes */}
             <h2 className="card-title mt-8 mb-4">{t("reservation.Notes")}</h2>
             <div className="grid grid-cols-1 gap-4">
               <div className="p-5 rounded bg-gray-50">
