@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useVehicle } from "../../../context/VehicleContext";
 import LoadingSpiner from "../../../components/LodingSpiner";
 import ConfirmModal from "../../../components/ConfirmModal";
+import { useAuth } from "../../../context/AuthContext";
 import { CarFront, Eye, Pencil, Trash2, MoreVertical, Filter } from "lucide-react";
 import { t } from "i18next";
-import { useAuth } from "../../../context/AuthContext";
 
-// Enums for vehicle status and fuel type
+
 const VehicleStatus = {
   AVAILABLE: "AVAILABLE",
   RENTED: "RENTED",
@@ -47,15 +47,15 @@ export default function AllVehicles() {
     removeVehicle(selectedVehicleId);
   };
 
-  // Get localized status display name
+
   const getStatusDisplayName = (status) => {
     return VehicleStatus[status] || status;
   };
 
-  // Extract unique brands for dropdown
+
   const uniqueBrands = [...new Set(vehicles.map((vehicle) => vehicle.brand))];
 
-  // Filter vehicles based on dropdown selections
+
   const filteredVehicles = vehicles.filter((vehicle) => {
     return (
       (brandFilter ? vehicle.brand === brandFilter : true) &&
@@ -155,7 +155,7 @@ export default function AllVehicles() {
     <div className="rounded-box border border-base-content/5 bg-base-100 ">
           <table className="table">
             <thead>
-              <tr>
+              <tr className="bg-sky-100">
                 <th >{t("vehicle.brand")}</th>
                 <th>{t("vehicle.model")}</th>
                 <th  className="hidden md:table-cell">{t("vehicle.plateNumber")}</th>
@@ -184,10 +184,10 @@ export default function AllVehicles() {
                   <span
                       className={`badge  ${
                         vehicle.status === "AVAILABLE"
-                          ? 'badge-success'
+                          ? 'bg-green-100 text-green-600'
                           : vehicle.status === "RENTED"
-                          ? 'badge-warning'
-                          : 'badge-error'
+                          ? 'bg-yellow-100 text-yellow-600'
+                          : 'bg-red-100 text-red-600'
                       } gap-1 p-3`}
                     >
                       {t(`vehicle.${vehicle.status}`)}

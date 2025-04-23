@@ -79,26 +79,26 @@ export default function AllClients() {
       <div
         className={`${
           showFilters ? "flex" : "hidden"
-        } mb-4 flex space-x-4  md:flex md:flex-row md:justify-between`}
+        } mb-4  flex-col   md:flex md:flex-row md:justify-between  gap-3 w-full items-center`}
       >
         <input
           type="text"
           placeholder={t("client.name")}
-          className="input input-bordered w-1/3"
+          className="input input-bordered md:w-1/3"
           value={searchName}
           onChange={(e) => setSearchName(e.target.value)}
         />
         <input
           type="text"
           placeholder={t("client.searchByCIN")}
-          className="input input-bordered w-1/3"
+          className="input input-bordered md:w-1/3"
           value={searchCIN}
           onChange={(e) => setSearchCIN(e.target.value)}
         />
         <input
           type="text"
           placeholder={t("client.searchByLicense")}
-          className="input input-bordered w-1/3"
+          className="input input-bordered md:w-1/3"
           value={searchLicense}
           onChange={(e) => setSearchLicense(e.target.value)}
         />
@@ -110,6 +110,7 @@ export default function AllClients() {
               <th>{t("client.name")}</th>
               <th>{t("client.email")}</th>
               <th>{t("client.phone")}</th>
+              <th>{t("client.address")}</th>
               <th className="text-right">{t("common.actions")}</th>
             </tr>
           </thead>
@@ -127,6 +128,7 @@ export default function AllClients() {
                   <td>{client.name}</td>
                   <td>{client.email}</td>
                   <td>{client.phone}</td>
+                  <td>{client.address}</td>
                   <td className={`text-${t("dropdown")}`}>
                     <div className="dropdown dropdown-end">
                       <div

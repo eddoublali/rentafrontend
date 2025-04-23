@@ -11,7 +11,6 @@ export const RevenueProvider = ({ children }) => {
   const [monthlyRevenue, setMonthlyRevenue] = useState(null);
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
-  // Get one revenue by ID
   const getRevenueById = async (id) => {
     try {
       setLoading(true);
@@ -27,7 +26,6 @@ export const RevenueProvider = ({ children }) => {
     }
   };
 
-  // Create a new revenue
   const createRevenue = async (revenueData) => {
     try {
       setLoading(true);
@@ -43,7 +41,6 @@ export const RevenueProvider = ({ children }) => {
     }
   };
 
-  // Update a revenue
   const updateRevenue = async (id, updates) => {
     try {
       setLoading(true);
@@ -62,7 +59,6 @@ export const RevenueProvider = ({ children }) => {
     }
   };
 
-  // Delete a revenue
   const deleteRevenue = async (id) => {
     try {
       setLoading(true);
@@ -80,7 +76,6 @@ export const RevenueProvider = ({ children }) => {
     }
   };
 
-  // Fetch all revenues
   const fetchRevenues = async () => {
     try {
       setLoading(true);
@@ -94,7 +89,6 @@ export const RevenueProvider = ({ children }) => {
     }
   };
 
-  // Fetch monthly revenue breakdown
   const fetchMonthlyRevenue = async (year) => {
     try {
       setLoading(true);

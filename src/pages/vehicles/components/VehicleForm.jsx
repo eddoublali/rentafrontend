@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { stepSchemas, vehicleSchema } from './vehicleValidation';
-
 import StepNavigation from './components/StepNavigation';
 import BasicInfoStep from './components/BasicInfoStep';
 import TechnicalDetailsStep from './components/TechnicalDetailsStep';
@@ -18,7 +17,6 @@ const VehicleForm = ({
   isSaving, 
   error, 
   title,
-  // Accept these props from parent component (for edit mode)
   handleFileChange: externalHandleFileChange,
   clearFile: externalClearFile,
   imagePreview: externalImagePreview,
@@ -29,11 +27,11 @@ const VehicleForm = ({
   const totalSteps = 6;
   const [formErrors, setFormErrors] = useState({});
   
-  // Use external values if provided, otherwise initialize locally
+ 
   const [imagePreview, setImagePreview] = useState(externalImagePreview || null);
   const [docPreviews, setDocPreviews] = useState(externalDocPreviews || {});
 
-  // Update local state when external values change
+  
   useEffect(() => {
     if (externalImagePreview !== undefined) {
       setImagePreview(externalImagePreview);
@@ -46,8 +44,7 @@ const VehicleForm = ({
     }
   }, [externalDocPreviews]);
 
-  // Clean up object URLs to prevent memory leaks
-  // Only clean up locally created URLs (not external ones)
+  
   useEffect(() => {
     return () => {
       if (imagePreview && !externalImagePreview && imagePreview.startsWith('blob:')) {
@@ -64,7 +61,6 @@ const VehicleForm = ({
     };
   }, [imagePreview, docPreviews, externalImagePreview, externalDocPreviews]);
 
-  // Handle file input changes - use external handler if provided
   const handleFileChange = (e) => {
     if (externalHandleFileChange) {
       externalHandleFileChange(e);
@@ -82,7 +78,7 @@ const VehicleForm = ({
         },
       });
 
-      // Create a preview URL for the file
+    
       const previewUrl = URL.createObjectURL(file);
       if (name === 'image') {
         setImagePreview(previewUrl);
@@ -95,7 +91,6 @@ const VehicleForm = ({
     }
   };
 
-  // Clear file input - use external handler if provided
   const clearFile = (name) => {
     if (externalClearFile) {
       externalClearFile(name);
@@ -155,7 +150,7 @@ const VehicleForm = ({
     return converted;
   };
 
-  // Validate the current step
+
   const validateStep = (stepData, stepIndex) => {
     try {
       stepSchemas[stepIndex].parse(stepData);
@@ -170,7 +165,7 @@ const VehicleForm = ({
     }
   };
 
-  // Validate the entire form on submission
+  
   const validateForm = (data) => {
     try {
       vehicleSchema.parse(data);
@@ -187,16 +182,16 @@ const VehicleForm = ({
 
   const goToNextStep = (e) => {
     if (e) e.preventDefault();
-    // Prepare data for the current step
+
     const stepData = {};
     Object.keys(stepSchemas[currentStep - 1].shape).forEach((field) => {
       stepData[field] = formData[field];
     });
 
-    // Convert data types for validation
+
     const convertedStepData = convertFormData(stepData);
 
-    // Validate the current step
+
     if (validateStep(convertedStepData, currentStep - 1)) {
       setFormErrors({}); 
       if (currentStep < totalSteps) {
@@ -209,7 +204,7 @@ const VehicleForm = ({
   const goToPreviousStep = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
-      setFormErrors({}); // Clear errors when going back
+      setFormErrors({}); 
       window.scrollTo(0, 0);
     }
   };
@@ -217,31 +212,23 @@ const VehicleForm = ({
   const handleSubmitForm = (e) => {
     e.preventDefault();
   
-    // Convert all form data for validation and submission
     const convertedData = convertFormData(formData);
   
-    // Prepare FormData object for file uploads
     const formDataToSubmit = new FormData();
   
-    // Append non-file data to FormData
     Object.keys(convertedData).forEach((key) => {
-      // Skip file fields
       if (convertedData[key] !== null && !(convertedData[key] instanceof File)) {
-        // Use the converted values (numbers, dates) from convertedData
         formDataToSubmit.append(key, convertedData[key]);
       }
     });
   
-    // Append files to FormData
     Object.keys(formData).forEach((key) => {
       if (formData[key] instanceof File) {
         formDataToSubmit.append(key, formData[key]);
       }
     });
   
-    // Validate the entire form
     if (validateForm(convertedData)) {
-      // Submit the form data
       onSubmit(e, formDataToSubmit);
       setFormErrors({});
       navigate('/vehicles')
@@ -315,7 +302,7 @@ const VehicleForm = ({
         <button
           type="button"
           onClick={() => navigate('/vehicles')}
-          className="btn btn-ghost"
+          className="btn btn-soft "
         >
           Cancel
         </button>
@@ -333,9 +320,8 @@ const VehicleForm = ({
         </div>
       )}
 
-      {/* Key fix: Change the form's onSubmit to prevent automatic submission */}
+    
       <form onSubmit={(e) => { 
-        // Only allow form submission on the final step
         if (currentStep === totalSteps) {
           handleSubmitForm(e);
         } else {

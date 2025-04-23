@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext.jsx';
-import api from '../../services/api'; // Your Axios instance
+import api from '../../services/api';
 import { z } from 'zod';
 import rentalogo from "../../assets/rentalogo.png";
 import { AlertCircle } from 'lucide-react';
+import { t } from 'i18next';
 
-// Create Zod schema for validation
+
 const loginSchema = z.object({
-  email: z.string().email('Please enter a valid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters long'),
+  email: z.string().email(t("singup.invalidEmail")),
+  password: z.string().min(6, t("singup.passwordMismatch")),
 });
 
 const Login = () => {
-  const { login } = useAuth(); // From AuthContext
+  const { login } = useAuth(); 
   const navigate = useNavigate();
   
   const [email, setEmail] = useState('');
@@ -26,21 +27,20 @@ const Login = () => {
     e.preventDefault();
     setServerError('');
     
-    // Validate form data using Zod
+  
     const result = loginSchema.safeParse({ email, password });
     
     if (result.success) {
       setIsLoading(true);
       try {
         const res = await api.post('/auth/login', { email, password });
-        login(res.data); // This will save user and token
-        navigate('/'); // Redirect after login
+        login(res.data); 
+        navigate('/'); 
       } catch (err) {
-        setServerError(err.response?.data?.message || 'Invalid email or password. Please try again.');
+        setServerError(err.response?.data?.message || t("singup.singupNotmatch"));
         setIsLoading(false);
       }
     } else {
-      // Set errors from Zod validation
       const newErrors = result.error.errors.reduce((acc, error) => {
         acc[error.path[0]] = error.message;
         return acc;
@@ -51,15 +51,15 @@ const Login = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <div className="w-full max-w-lg p-8 space-y-8 rounded-lg shadow-xl  border border-base-content/10 ">
+      <div className="w-full max-w-lg p-8 space-y-8 rounded-lg md:shadow-xl md:border border-base-content/10 ">
         <div className="text-center">
           <img 
             src={rentalogo} 
             alt="Rental Logo" 
             className="mx-auto h-20 w-auto" 
           />
-          <h2 className="mt-6 text-3xl font-extrabold ">Welcome back</h2>
-          <p className="mt-2 text-sm">Sign in to your account</p>
+          <h2 className="mt-6 text-3xl font-extrabold ">{t("singup.Welcome")}</h2>
+          <p className="mt-2 text-sm">{t("singup.singupmessage")}</p>
         </div>
         
         {serverError && (
@@ -73,7 +73,7 @@ const Login = () => {
           <div className="space-y-4 rounded-md">
             <div>
               <label htmlFor="email" className="block text-sm font-medium ">
-                Email address
+                {t("singup.email")}
               </label>
               <input
                 id="email"
@@ -95,7 +95,7 @@ const Login = () => {
             <div>
               <div className="flex justify-between">
                 <label htmlFor="password" className="block text-sm font-medium ">
-                  Password
+                {t("singup.Password")}
                 </label>
               
               </div>
@@ -125,7 +125,7 @@ const Login = () => {
                 isLoading ? 'opacity-70 cursor-not-allowed' : ''
               }`}
             >
-              {isLoading ? 'Signing in...' : 'Sign in'}
+              {isLoading ?  t("singup.Signing") :  t("singup.Signin")}
             </button>
           </div>
         </form>

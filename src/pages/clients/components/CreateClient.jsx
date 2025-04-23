@@ -257,7 +257,7 @@ export default function CreateClient({
           <button
             type="button"
             onClick={() => navigate("/clients")}
-            className="btn btn-ghost"
+            className="btn btn-soft"
           >
             {t("common.cancel")}
           </button>
@@ -668,7 +668,7 @@ export default function CreateClient({
           <div className="md:col-span-3 mt-6">
             <button
               type="submit"
-              className={`btn bg-sky-600 text-white ${
+              className={`btn bg-sky-600 text-white w-full${
                 isSubmitting ? "loading" : ""
               }`}
               disabled={isSubmitting || isSaving}

@@ -2,32 +2,25 @@ import React, { useState } from "react";
 import rentalogo from "../../assets/rentalogo.png";
 import { Bell, Globe, LogOut, Settings, User } from "lucide-react";
 import { useTranslation } from "react-i18next";
-
+import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
-    const { user, logout } = useAuth();
-
- 
+  const { user, logout } = useAuth();
 
   return (
     <div className="navbar bg-base-100 shadow-md px-4">
-      {/* Left Side: Logo */}
       <div className="flex-1">
         <img src={rentalogo} alt="Logo" className="h-10" />
       </div>
 
-      {/* Right Side */}
       <div className="flex-none gap-4 items-center">
-      
-       
-        {/* Notification Bell */}
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle m-1">
             <div className="indicator">
               <Bell className="w-5 h-5" />
-              <span className="badge badge-xs badge-primary indicator-item">
+              <span className="badge badge-xs bg-sky-600 text-white indicator-item">
                 0
               </span>
             </div>
@@ -54,13 +47,13 @@ export default function Navbar() {
             className="menu dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a href="/settings">
+              <Link to="/settings">
                 <Settings className="w-4 h-4" />
                 {t("navbar.profileSettings") || "Profile Settings"}
-              </a>
+              </Link>
             </li>
             <li>
-              <a  onClick={logout}>
+              <a onClick={logout}>
                 <LogOut className="w-4 h-4" />
                 {t("navbar.logout") || "Logout"}
               </a>

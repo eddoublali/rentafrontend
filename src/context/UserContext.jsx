@@ -6,11 +6,10 @@ const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState(null); // State to store a single user
+  const [user, setUser] = useState(null); 
 
 
 
-// Create a new user
 const createUser = async (userData) => {
   try {
     setLoading(true);
@@ -18,7 +17,6 @@ const createUser = async (userData) => {
     setUsers((prevUsers) => [...prevUsers, data.user]); // Add the new user to the state
     return { success: true, user: data.user };
   } catch (error) {
-    // Extract the error message from the response
     const errorMessage = error.response?.data?.message || 'Failed to create user';
     console.error('User creation error:', errorMessage);
     return { success: false, error: errorMessage };
@@ -31,7 +29,7 @@ const createUser = async (userData) => {
     try {
       setLoading(true);
       const { data } = await api.get('/user');
-      setUsers(data.users || []); // adjust based on your backend response
+      setUsers(data.users || []);
     } catch (error) {
       console.error('Failed to fetch users:', error);
     } finally {
@@ -39,12 +37,11 @@ const createUser = async (userData) => {
     }
   };
 
-// Fetch a single user by ID
 const fetchUserById = async (id) => {
   try {
     setLoading(true);
     const { data } = await api.get(`/user/${id}`);
-    setUser(data.user); // Store the fetched user
+    setUser(data.user); 
     return data.user;
   } catch (error) {
     console.error(`Failed to fetch user with ID ${id}:`, error);
@@ -54,7 +51,6 @@ const fetchUserById = async (id) => {
   }
 };
 
-// Update user
 const updateUser = async (id, updatedData) => {
   try {
     setLoading(true);
@@ -66,12 +62,11 @@ const updateUser = async (id, updatedData) => {
   } catch (error) {
     console.error(`Failed to update user with ID ${id}:`, error);
     
-    // Check if the error is due to email already existing
     if (error.response?.status === 400 && error.response?.data?.message === "Email already exists") {
       return { 
         success: false, 
         error: "Email already exists",
-        field: "email" // Indicate which field has the error
+        field: "email" 
       };
     }
     

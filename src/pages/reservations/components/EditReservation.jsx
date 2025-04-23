@@ -236,10 +236,12 @@ export default function EditReservation({ title = "Edit Reservation" }) {
       return false;
     }
   };
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validateForm()) return;
+    if (!validateForm())  return;
+
+      
 
     setIsSaving(true);
     try {
@@ -329,7 +331,7 @@ export default function EditReservation({ title = "Edit Reservation" }) {
       <button
           type="button"
           onClick={() => navigate('/reservations')}
-          className="btn btn-ghost"
+          className="btn btn-soft"
         >
           {t('common.cancel')}
         </button>
@@ -667,8 +669,9 @@ export default function EditReservation({ title = "Edit Reservation" }) {
                   </option>
                 ))}
             </select>
-            {errors.clientSeconId && (
-              <span className="text-error text-xs mt-1">{errors.clientSeconId}</span>
+            {errors.clientSecondId && (
+              <span className="text-error text-xs mt-1">{errors.clientSecondId}</span>
+              
             )}
           </div>
         )}
@@ -735,7 +738,7 @@ export default function EditReservation({ title = "Edit Reservation" }) {
         <div className="col-span-1 md:col-span-3">
           <button
             type="submit"
-            className="btn bg-sky-600 text-white w-full"
+            className="btn bg-sky-600 text-white w-full mt-5"
             disabled={isSaving || clientsLoading || vehiclesLoading || reservationLoading}
           >
             {isSaving ? t('common.saving') : t('reservation.updateReservation')}

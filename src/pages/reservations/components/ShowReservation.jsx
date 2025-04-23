@@ -293,7 +293,7 @@ export default function ShowReservation() {
             <h2 className="card-title mt-8 mb-4">{t("reservation.Notes")}</h2>
             <div className="grid grid-cols-1 gap-4">
               <div className="p-5 rounded bg-gray-50">
-                <p className="text-lg text-gray-900  text-center">
+                <p className="text-lg text-gray-900  ">
                   {reservation.note || "No notes available"}
                 </p>
               </div>

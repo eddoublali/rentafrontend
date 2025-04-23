@@ -1,17 +1,13 @@
-// src/context/ContractContext.js
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import api from '../services/api'; // Ensure this is your configured API instance
+import api from '../services/api'; 
 
-// Create the context
 const ContractContext = createContext();
 
-// Create the provider component
 export const ContractProvider = ({ children }) => {
   const [contracts, setContracts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch all contracts
   const fetchContracts = async () => {
     setLoading(true);
     try {
@@ -26,7 +22,6 @@ export const ContractProvider = ({ children }) => {
     }
   };
 
-  // Create a new contract
   const createContract = async (contractData) => {
     setLoading(true);
     try {
@@ -43,7 +38,6 @@ export const ContractProvider = ({ children }) => {
     }
   };
 
-  // Update an existing contract
   const updateContract = async (id, updatedData) => {
     setLoading(true);
     try {
@@ -64,7 +58,6 @@ export const ContractProvider = ({ children }) => {
     }
   };
 
-  // Delete a contract by ID
   const deleteContract = async (id) => {
     setLoading(true);
     try {
@@ -82,7 +75,6 @@ export const ContractProvider = ({ children }) => {
     }
   };
 
-  // Delete all contracts
   const deleteAllContracts = async () => {
     setLoading(true);
     try {
@@ -98,7 +90,6 @@ export const ContractProvider = ({ children }) => {
     }
   };
 
-  // Fetch contracts on component mount
   useEffect(() => {
     fetchContracts();
   }, []);
@@ -121,5 +112,4 @@ export const ContractProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use the ContractContext
 export const useContract = () => useContext(ContractContext);

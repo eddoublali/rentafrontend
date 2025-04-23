@@ -21,6 +21,7 @@ export default function AllReservation() {
     useReservation();
   const [clientFilter, setClientFilter] = useState("");
   const [brandFilter, setBrandFilter] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
   const [selectedId, setSelectedId] = useState(null);
   const navigate = useNavigate();
   const role = user?.role;
@@ -45,7 +46,8 @@ export default function AllReservation() {
         : true) &&
       (brandFilter
         ? res.vehicle.brand.toLowerCase().includes(brandFilter.toLowerCase())
-        : true)
+        : true) &&
+      (statusFilter ? res.status === statusFilter : true)
   );
 
   if (loading) return <LoadingSpiner />;
@@ -79,23 +81,40 @@ export default function AllReservation() {
       <div
         className={`${
           showFilters ? "flex" : "hidden"
-        } mb-4 flex space-x-4  md:flex md:flex-row md:justify-between`}
+        } mb-4 md:flex flex-col md:flex-row gap-4 md:justify-between`}
       >
-        <input
-          type="text"
-          placeholder={t("reservation.serchbyclient")}
-          className="input input-bordered w-1/2"
-          value={clientFilter}
-          onChange={(e) => setClientFilter(e.target.value)}
-        />
+        <div className="flex flex-col md:flex-row gap-4 w-full">
+          <input
+            type="text"
+            placeholder={t("reservation.serchbyclient")}
+            className="input input-bordered w-full md:w-1/3"
+            value={clientFilter}
+            onChange={(e) => setClientFilter(e.target.value)}
+          />
 
-        <input
-          type="text"
-          placeholder={t("reservation.serchbyBrand")}
-          className="input input-bordered w-1/2"
-          value={brandFilter}
-          onChange={(e) => setBrandFilter(e.target.value)}
-        />
+          <input
+            type="text"
+            placeholder={t("reservation.serchbyBrand")}
+            className="input input-bordered w-full md:w-1/3"
+            value={brandFilter}
+            onChange={(e) => setBrandFilter(e.target.value)}
+          />
+     <label className="select">
+          <span className="label">{t("vehicle.status")}</span>
+          <select
+            className="select select-bordered w-full md:w-1/3 cursor-pointer"
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+          >
+            <option value="">{t("vehicle.all")}</option>
+            <option value="PENDING">{t("reservation.PENDING")}</option>
+            <option value="CONFIRMED">{t("reservation.CONFIRMED")}</option>
+            <option value="COMPLETED">{t("reservation.COMPLETED")}</option>
+            <option value="CANCELED">{t("reservation.CANCELED")}</option>
+          </select>
+
+          </label>
+        </div>
       </div>
       <div className="rounded-box border border-base-content/5 bg-base-100">
         <table className="table">
@@ -105,13 +124,14 @@ export default function AllReservation() {
               <th>{t("vehicle.brand")}</th>
               <th>{t("reservation.startDate")}</th>
               <th>{t("reservation.endDate")}</th>
+              <th>{t("reservation.status")}</th>
               <th className="text-right">{t("common.actions")}</th>
             </tr>
           </thead>
           <tbody>
             {filteredReservations.length === 0 ? (
               <tr>
-                <td colSpan={4} className="text-center py-10 text-gray-500">
+                <td colSpan={6} className="text-center py-10 text-gray-500">
                   <p className="text-lg">{t("reservation.noResults")}</p>
                   <p className="mt-2">
                     {t("reservation.addreservationmessage")}
@@ -125,6 +145,21 @@ export default function AllReservation() {
                   <td>{res.vehicle?.brand}</td>
                   <td>{new Date(res.startDate).toLocaleDateString()}</td>
                   <td>{new Date(res.endDate).toLocaleDateString()}</td>
+                  <td>
+                    <span
+                      className={`badge ${
+                        res.status === "COMPLETED"
+                          ? "bg-green-100 text-green-600"
+                          : res.status === "CONFIRMED"
+                          ? "bg-yellow-100 text-yellow-600"
+                          : res.status === "PENDING"
+                          ? "bg-yellow-100 text-yellow-600"
+                          : "bg-red-100 text-red-600"
+                      } gap-1 p-3`}
+                    >
+                      {t(`reservation.${res.status}`)}
+                    </span>
+                  </td>
                   <td className={`text-${t("dropdown")}`}>
                     <div className="dropdown dropdown-end">
                       <div

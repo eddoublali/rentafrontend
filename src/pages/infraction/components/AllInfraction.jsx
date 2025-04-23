@@ -84,17 +84,18 @@ export default function AllInfraction() {
   
       <div className={`${
           showFilters ? "flex" : "hidden"
-        } mb-4 md:flex flex-col md:flex-row gap-4 md:gap-4`}>
+        } mb-4 md:flex flex-col md:flex-row gap-4 md:gap-4 items-center`}>
         <input
           type="text"
           placeholder={t("reservation.serchbyclient")}
-          className="input input-bordered w-full md:w-1/3"
+          className="input input-bordered w-1/2 md:w-1/3"
           value={clientNameFilter}
           onChange={(e) => setClientNameFilter(e.target.value)}
         />
-      
+      <label className="select w-1/2">
+      <span className="label">{t("infraction.infractions")}</span>
         <select
-          className="select select-bordered w-full md:w-1/3 cursor-pointer"
+          className="select select-bordered md:w-1/3 cursor-pointer"
           value={typeFilter}
           onChange={(e) => setTypeFilter(e.target.value)}
         >
@@ -105,9 +106,11 @@ export default function AllInfraction() {
             </option>
           ))}
         </select>
-
+        </label>
+        <label className="select  w-1/2">
+        <span className="label">{t("vehicle.status")}</span>
         <select
-          className="select select-bordered w-full md:w-1/3 cursor-pointer"
+          className="select select-bordered  md:w-1/3 cursor-pointer"
           value={statusFilter}
           onChange={(e) => setStatusFilter(e.target.value)}
         >
@@ -116,6 +119,7 @@ export default function AllInfraction() {
           <option value="paid">{t("status.paid")}</option>
           <option value="unpaid">{t("status.unpaid")}</option>
         </select>
+        </label>
     
       </div>
 

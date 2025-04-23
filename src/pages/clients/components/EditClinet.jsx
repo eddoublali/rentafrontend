@@ -295,7 +295,7 @@ export default function EditClient({ title = t("client.editClient"), isSaving = 
           <button
             type="button"
             onClick={() => navigate("/clients")}
-            className="btn btn-ghost"
+            className="btn btn-soft"
           >
             {t("common.cancel")}
           </button>
@@ -698,16 +698,13 @@ export default function EditClient({ title = t("client.editClient"), isSaving = 
                 className="checkbox"
               />
             </label>
-            {/* Debug info */}
-            <span className="text-xs text-base-content/50">
-              Current value: {formData.blacklisted ? "true" : "false"}
-            </span>
+            
           </div>
 
           <div className="md:col-span-3 mt-6">
             <button
               type="submit"
-              className={`btn bg-sky-600 text-white ${isSavingData ? "loading" : ""}`}
+              className={`btn bg-sky-600 text-white w-full ${isSavingData ? "loading" : ""}`}
               disabled={isSavingData || isSaving}
             >
               {isSavingData ? t("common.saving") : t("client.updateClient")}

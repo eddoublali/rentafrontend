@@ -108,12 +108,12 @@ export default function AllUsers() {
       <div
         className={`${
           showFilters ? "flex" : "hidden"
-        } mb-4 flex space-x-4  md:flex md:flex-row md:justify-between`}
+        } mb-4 flex flex-col gap-3 md:flex md:flex-row md:justify-between items-center`}
       >
         <input
           type="text"
           placeholder={t("user.Searchname")}
-          className="input input-bordered flex-1"
+          className="input input-bordered "
           value={nameFilter}
           onChange={(e) => setNameFilter(e.target.value)}
         />
@@ -121,21 +121,23 @@ export default function AllUsers() {
         <input
           type="text"
           placeholder={t("user.Searchemail")}
-          className="input input-bordered flex-1"
+          className="input input-bordered "
           value={emailFilter}
           onChange={(e) => setEmailFilter(e.target.value)}
         />
-
+    <label className="select">
+          <span className="label">{t("user.role")}</span>
         <select
-          className="select select-bordered flex-1"
+          className="select select-bordered "
           value={roleFilter}
           onChange={(e) => setRoleFilter(e.target.value)}
         >
-          <option value="">{t("user.AllRoles")}</option>
+          <option value="">{t("common.all")}</option>
           <option value="admin">{t("user.Admin")}</option>
           <option value="Administrator">{t("user.Administrator")}</option>
           <option value="Accountant">{t("user.Accountant")}</option>
         </select>
+        </label>
       </div>
       <div className="rounded-box border border-base-content/5 bg-base-100 mt-">
         <table className="table">
@@ -160,7 +162,7 @@ export default function AllUsers() {
                 <tr key={user?.id ?? `user-${index}`}>
                   <td>{user?.name ?? "N/A"}</td>
                   <td>{user?.email ?? "N/A"}</td>
-                  <td className="capitalize">{user?.role ?? "unknown"}</td>
+                  <td className="capitalize">{user?.role.toLowerCase() ?? "unknown"}</td>
                   <td className={`text-${t("dropdown")}`}>
                     <div className="dropdown dropdown-end">
                       <div

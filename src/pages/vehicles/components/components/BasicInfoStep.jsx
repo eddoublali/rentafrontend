@@ -22,7 +22,7 @@ const BasicInfoStep = ({ formData, onChange, formErrors }) => {
             value={formData.brand}
             onChange={onChange}
             className={`select w-full ${formErrors.brand ? 'select-error' : ''}`}
-            required
+            
           >
             <option value="">{t('vehicle.selectBrand')}</option>
             {brands.map(brand => (

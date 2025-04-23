@@ -9,7 +9,6 @@ export const ReservationProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Fetch all reservations
   const fetchReservations = async () => {
     setLoading(true);
     setError(null);

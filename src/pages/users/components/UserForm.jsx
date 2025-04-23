@@ -108,7 +108,7 @@ export default function UserForm({ user, onSubmit }) {
         <button
           type="button"
           onClick={() => navigate('/users')}
-          className="btn btn-ghost"
+          className="btn btn-soft"
         >
           {t("common.cancel")}
         </button>
@@ -183,7 +183,7 @@ export default function UserForm({ user, onSubmit }) {
           id="role"
           value={role}
           onChange={handleChange}
-          className={`select select-bordered w-full ${errors.role ? 'select-error' : ''}`}
+          className={`select select-bordered w-full cursor-pointer${errors.role ? 'select-error' : ''}`}
         >
           <option value="ADMIN">{t("user.Admin") }</option>
           <option value="ACCOUNTANT">{t("user.Accountant") }</option>

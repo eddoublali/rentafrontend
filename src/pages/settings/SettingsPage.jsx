@@ -44,8 +44,8 @@ export default function SettingsPage() {
            <div className="card-body flex items-center gap-4">
              <ThemeToggle />
              <div>
-               <h2 className="card-title">{t('theme')}</h2>
-               <p>{t('themeDescription')}</p>
+               <h2 className="card-title text-center itemes-center">{t('theme.theme')}</h2>
+               <p>{t('theme.description')}</p>
              </div>
            </div>
          </div>

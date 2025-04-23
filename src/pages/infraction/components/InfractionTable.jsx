@@ -9,11 +9,11 @@ const InfractionTable = ({ infractions, handleDelete, userRole }) => {
   const getStatusColor = (status) => {
     switch (status.toLowerCase()) {
       case "paid":
-        return "badge badge-success";
+        return "badge bg-green-100 text-green-600";
       case "unpaid":
-        return "badge badge-warning";
+        return "badge bg-yellow-100 text-yellow-600";
       case "pending":
-        return "badge badge-warning";
+        return "badge bg-red-100 text-red-600";
       default:
         return "";
     }
@@ -23,7 +23,7 @@ console.log(infractions)
     <div className="rounded-box border border-base-content/5 bg-base-100 mt-5">
       <table className="table">
         <thead>
-          <tr>
+          <tr className="bg-sky-100">
             <th>{t("infraction.type")}</th>
             <th>{t("tables.infraction.date")}</th>
             <th>{t("tables.infraction.amount")}</th>

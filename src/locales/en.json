@@ -12,7 +12,12 @@
     "expense": "Expense",
     "settings": "Settings",
     "logout": "Logout",
-    "documents":"Documents"
+    "documents": "Documents",
+    "accident": "Accident"
+  },
+  "navbar": {
+    "profileSettings": "Settings",
+    "logout": "logout"
   },
 
   "logo": "Logo",
@@ -24,7 +29,17 @@
     "maintenance": "Vehicle maintenance due",
     "payment": "Payment received"
   },
-
+  "singup": {
+    "invalidEmail": "Please enter a valid email address",
+    "passwordMismatch": "Password must be at least 6 characters long",
+    "singupNotmatch": "Invalid email or password. Please try again.",
+    "Welcome": "Welcome back",
+    "singupmessage": "Sign in to your account",
+    "email": "Email address",
+    "Password": "Password",
+    "Signing": "Signing in...",
+    "Signin": "Sign in"
+  },
   "vehicle": {
     "brand": "Brand",
     "model": "Model",
@@ -178,7 +193,11 @@
     "Notes": "Notes",
     "AdditionalDetails": "Additional Details",
     "VehicleStatus": "Vehicle Status",
-    "LocationInformation": "Location Information"
+    "LocationInformation": "Location Information",
+    "PENDING": "Pending",
+    "COMPLETED": "Completed",
+    "CONFIRMED": "Confirmed",
+    "CANCELLED": "Cancelled"
   },
 
   "client": {
@@ -267,17 +286,39 @@
     "addInfraction": "Add Infraction",
     "deleteMessage": "Are you sure you want to delete this Infraction?",
     "deleteTitle": "Delete Confirmation",
-    "Noinfractions":"No infractions available.",
-    "Addfirstinfractions":"Add your first infractions to get started."
-    
+    "Noinfractions": "No infractions available.",
+    "Addfirstinfractions": "Add your first infractions to get started."
+    ,
+    "validation": {
+    "vehicleId": {
+      "int": "Vehicle ID must be a whole number.",
+      "required": "Vehicle ID is required."
+    },
+    "clientId": {
+      "int": "Client ID must be a whole number.",
+      "required": "Client ID is required."
+    },
+    "infractionType": {
+      "required": "Infraction type is required."
+    },
+    "fineAmount": {
+      "min": "Fine amount must be zero or greater."
+    },
+    "infractionDate": {
+      "invalid": "Please select a valid date."
+    },
+    "status": {
+      "invalid": "Status must be PENDING, PAID, or UNPAID."
+    }
+  }
   },
 
   "contract": {
     "contractList": "List of Contracts",
     "toBeImplemented": "Contract list to be implemented.",
-    "Contract":"Contract",
-    "Invoice":"Invoice",
-    "Devise":"Devise"
+    "Contract": "Contract",
+    "Invoice": "Invoice",
+    "Devise": "Devise"
   },
 
   "common": {
@@ -374,7 +415,7 @@
   "profile": "Profile",
   "profile.description": "Update your personal info and email address.",
 
-  "theme.description": "Toggle between light and dark mode.",
+  "theme.description": "light and dark mode.",
   "language": "Language",
   "appearance": "Appearance",
   "appearance.description": "Change theme and interface style.",
@@ -411,7 +452,59 @@
     "failedToCreateInfraction": "Failed to create infraction",
     "failedToUpdateInfraction": "Failed to update infraction",
     "failedToDeleteInfraction": "Failed to delete infraction",
-    "failedToFetchInfractions": "Failed to fetch infractions"
+    "failedToFetchInfractions": "Failed to fetch infractions",
+    "required": "required",
+    "Modelerror": "Model name must be at least 6 characters",
+    "yearerror": "Year must be 1900 or later",
+    "yearnotvalid": "Year cannot be in the future",
+    "doors": "Doors must be 0 or more",
+    "fuelerror": "Invalid fuel type",
+    "chassisnumbererror": "Chassis number must be at least 6 characters",
+    "melage": "Mileage must be 0 or more",
+    "Platenumber": "Plate number must be at least 6 characters",
+    "dailyprice": "Daily price must be 0 or more",
+    "statuserror": "Invalid status",
+    "imageerror": "Image must be a JPEG or PNG file under 5MB",
+    "Purchase": "Purchase price must be 0 or more",
+    "Advance": "Advance payment must be 0 or more",
+    "Monthly": "Monthly payment must be 0 or more",
+    "Remaining": "Remaining months must be 0 or more",
+    "Payment": "Payment day must be between 1 and 31",
+
+    "invalidDate": "Invalid date format",
+    "minAmount": "Amount must be greater than or equal to 0",
+    "maxAccessories": "Maximum 7 accessories allowed",
+    "noteTooLong": "Note is too long (maximum 10000 characters)",
+    "startBeforeEnd": "Start date must be before end date",
+    "secondDriverRequired": "Second driver must be selected when second driver option is enabled",
+    "numberRequired": "Must be a valid number",
+    "integerRequired": "Must be a whole number",
+    "minZero": "Value must be greater than or equal to 0",
+    "clientRequired": "Client selection is required",
+    "vehicleRequired": "Vehicle selection is required",
+    "locationRequired": "Location is required",
+    "invalidFuelLevel": "Fuel level must be a number ",
+    "invalidKm": "Kilometer value must be a positive number",
+    "pastDateError": "Date cannot be in the past",
+    "vehicleUnavailable": "Selected vehicle is not available for these dates"
+    ,"datemessage":"Invalid date",
+    "invalidEmail": "Email format is invalid",
+    "invalidPhoneNumber": "Phone number is required",
+    "invalidAddress": "Address is required",
+    "invalidCin":"CIN is required",
+    "invalidGender":"Invalid gender selection",
+    "cinexpired":"CIN is expired or invalid date",
+    "license":"License is required",
+    "licensexpired":"License is expired or invalid date",
+    "nationality":"Invalid nationality selected",
+    "passportxpired":"Passport is expired or invalid date" ,
+    "invalidBirthDate":"Birth date must be in the past",
+    "cinimage":"CIN image is required",
+    "licenseimage":"license image is required",
+    "nameMinLength":"Name must be at least 3 characters long"
+
+
+
   },
 
   "tables": {
@@ -486,6 +579,7 @@
     "density": "Interface Density",
     "compact": "Compact",
     "comfortable": "Comfortable",
-    "spacious": "Spacious"
+    "spacious": "Spacious",
+    "theme": "theme"
   }
 }

@@ -4,11 +4,11 @@ import { useVehicle } from "../../../context/VehicleContext";
 import { useReservation } from "../../../context/ReservationContext";
 import { useNavigate } from "react-router-dom";
 import { reservationSchema } from "./ReservationValidation";
-import { useTranslation } from "react-i18next"; 
+import { t } from "i18next";
 
 export default function CreateReservation() {
   const navigate = useNavigate();
-  const { t } = useTranslation(); 
+  
   const { clients, fetchClients, loading: clientsLoading } = useClient();
   const {
     fetchVehicles,
@@ -180,7 +180,9 @@ export default function CreateReservation() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validateForm()) return;
+    if (!validateForm()){
+      return;
+    }
 
     setIsSaving(true);
     try {
@@ -227,7 +229,7 @@ export default function CreateReservation() {
         <button
           type="button"
           onClick={() => navigate('/reservations')}
-          className="btn btn-ghost"
+          className="btn btn-soft"
         >
           {t('common.cancel')}
         </button>
@@ -566,8 +568,8 @@ export default function CreateReservation() {
                   </option>
                 ))}
             </select>
-            {errors.clientSeconId && (
-              <span className="text-error text-xs mt-1">{errors.clientSeconId}</span>
+            {errors.clientSecondId && (
+              <span className="text-error text-xs mt-1">{errors.clientSecondId}</span>
             )}
           </div>
         )}
@@ -633,7 +635,7 @@ export default function CreateReservation() {
         <div className="col-span-1 md:col-span-3">
           <button
             type="submit"
-            className="btn bg-sky-600 text-white w-full"
+            className="btn bg-sky-600 text-white w-full mt-5"
             disabled={isSaving || clientsLoading || vehiclesLoading}
           >
             {isSaving ? t('common.saving') : t('reservation.createReservation')}

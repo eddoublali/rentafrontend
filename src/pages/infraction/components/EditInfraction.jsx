@@ -210,7 +210,7 @@ export default function EditInfraction() {
         <button
           type="button"
           onClick={() => navigate('/infractions')}
-          className="btn btn-ghost"
+          className="btn btn-soft"
         >
           {t('common.cancel')}
         </button>
