@@ -63,93 +63,102 @@ export const routes = createBrowserRouter([
       {
         element: <Layout />, // Your common layout with Navbar and Sidebar
         children: [
-          { path: "/", element: <HomePagee/> },
+          { path: "/", element: <HomePagee /> },
           { path: "/settings", element: <SettingsPage /> },
 
-        
+          { path: "/users", element: <UsersPage /> },
+          { path: "/users/view/:id", element: <ShowUser /> },
+
+          { path: "/clients", element: <AllClients /> },
+          { path: "/clients/view/:id", element: <ShowClient /> },
+
+          { path: "/reservations", element: <AllReservation /> },
+          { path: "/reservations/view/:id", element: <ShowReservation /> },
+
+          { path: "/contract", element: <AllContract /> },
+          { path: "/contract/view/:id", element: <ShowContract /> },
+
+          { path: "/infractions", element: <AllInfraction /> },
+          { path: "/infractions/view/:id", element: <ShowInfraction /> },
+
+          { path: "/vehicles", element: <VehiclesPage /> },
+          { path: "/vehicles/view/:id", element: <VehicleDetails /> },
+
+          { path: "/accident", element: <AllAccident /> },
+
+          { path: "/revenue", element: <AllRevenue /> },
+          { path: "/revenue/view/:id", element: <ShowRevenue /> },
+
           {
-            element: <ProtectedRoute allowedRoles={["ADMIN","ADMINISTRATEUR"]} />,
+            element: <ProtectedRoute allowedRoles={["ADMIN"]} />,
             children: [
-              { path: "/users", element: <UsersPage /> },
               { path: "/users/add", element: <CreateUser /> },
-              { path: "/users/view/:id", element: <ShowUser /> },
               { path: "/users/edit/:id", element: <EditUser /> },
 
               //Clients
-              { path: "/clients", element: <AllClients /> },
+
               { path: "/clients/add", element: <CreateClient /> },
-              { path: "/clients/view/:id", element: <ShowClient /> },
               { path: "/clients/edit/:id", element: <EditClient /> },
 
               //reservations
-              { path: "/reservations", element: <AllReservation /> },
+
               { path: "/reservations/add", element: <CreateReservation /> },
-              { path: "/reservations/view/:id", element: <ShowReservation /> },
               { path: "/reservations/edit/:id", element: <EditReservation /> },
               //Contract
-              { path: "/contract", element: <AllContract /> },
+
               { path: "/contract/add", element: <CreateContract /> },
-              { path: "/contract/view/:id", element: <ShowContract /> },
               { path: "/contract/edit/:id", element: <EditContract /> },
 
               //AllRevenue
-              { path: "/revenue", element: <AllRevenue /> },
+
               { path: "/revenue/add", element: <CreateRevenue /> },
-              { path: "/revenue/view/:id", element: <ShowRevenue /> },
+
               { path: "/revenue/edit/:id", element: <EditRevenue /> },
 
-              { path: "/infractions", element: <AllInfraction /> },
               { path: "/infractions/add", element: <CreateInfraction /> },
               { path: "/infractions/edit/:id", element: <EditInfraction /> },
-              { path: "/infractions/view/:id", element: <ShowInfraction /> },
-              
-              { path: "/vehicles", element: <VehiclesPage /> },
-              { path: "/vehicles/view/:id", element: <VehicleDetails /> },
+
               { path: "/vehicles/add", element: <CreateVehicle /> },
               { path: "/vehicles/edit/:id", element: <EditVehicle /> },
 
               { path: "/documents", element: <AllDocuments /> },
 
-              { path: "/accident", element: <AllAccident /> },
-                { path: "/accident/add", element: <CreateAccident /> },
-                { path: "/accident/edit/:id", element: <EditAccident /> },
+              { path: "/accident/add", element: <CreateAccident /> },
+              { path: "/accident/edit/:id", element: <EditAccident /> },
             ],
           },
 
-          {
-            element: <ProtectedRoute allowedRoles={["ADMIN", "ACCOUNTANT"]} />,
-            children: [],
-          },
+          // {
+          //   element: (
+          //     <ProtectedRoute allowedRoles={["ADMIN", "ADMINISTRATEUR"]} />
+          //   ),
 
-          {
-            element: <ProtectedRoute allowedRoles={["ADMIN","ADMINISTRATEUR"]} />,
+          //   children: [
+          //     { path: "/users", element: <UsersPage /> },
+          //     { path: "/users/view/:id", element: <ShowUser /> },
 
-            children: [
-              { path: "/users", element: <UsersPage /> },
-              { path: "/users/view/:id", element: <ShowUser /> },
+          //     { path: "/vehicles", element: <VehiclesPage /> },
+          //     { path: "/vehicles/view/:id", element: <VehicleDetails /> },
 
-              { path: "/vehicles", element: <VehiclesPage /> },
-              { path: "/vehicles/view/:id", element: <VehicleDetails /> },
+          //     //Clients
+          //     { path: "/clients", element: <AllClients /> },
+          //     { path: "/clients/view/:id", element: <ShowClient /> },
 
-              //Clients
-              { path: "/clients", element: <AllClients /> },
-              { path: "/clients/view/:id", element: <ShowClient /> },
+          //     //reservations
+          //     { path: "/reservations", element: <AllReservation /> },
+          //     { path: "/reservations/view/:id", element: <ShowReservation /> },
 
-              //reservations
-              { path: "/reservations", element: <AllReservation /> },
-              { path: "/reservations/view/:id", element: <ShowReservation /> },
+          //     //Contract
+          //     { path: "/contract", element: <AllContract /> },
+          //     { path: "/contract/view/:id", element: <ShowContract /> },
 
-              //Contract
-              { path: "/contract", element: <AllContract /> },
-              { path: "/contract/view/:id", element: <ShowContract /> },
+          //     //AllRevenue
+          //     { path: "/revenue", element: <AllRevenue /> },
+          //     { path: "/revenue/view/:id", element: <ShowRevenue /> },
 
-              //AllRevenue
-              { path: "/revenue", element: <AllRevenue /> },
-              { path: "/revenue/view/:id", element: <ShowRevenue /> },
-
-              { path: "/infraction", element: <AllInfraction /> },
-            ],
-          },
+          //     { path: "/infraction", element: <AllInfraction /> },
+          //   ],
+          // },
         ],
       },
     ],

@@ -12,7 +12,7 @@ export const AccidentProvider = ({ children }) => {
   const fetchAccidents = async () => {
     setLoading(true);
     try {
-      const response = await api.get('/api/accidents');
+      const response = await api.get('/accidents');
       setAccidents(response.data.data);
       return { success: true, data: response.data.data };
     } catch (error) {
@@ -26,7 +26,7 @@ export const AccidentProvider = ({ children }) => {
   const fetchAccidentById = async (id) => {
     setLoading(true);
     try {
-      const response = await api.get(`/api/accidents/${id}`);
+      const response = await api.get(`/accidents/${id}`);
       setAccident(response.data.data);
       return { success: true, data: response.data.data };
     } catch (error) {
@@ -43,7 +43,7 @@ export const AccidentProvider = ({ children }) => {
 
   const createAccident = async (data) => {
     try {
-      const response = await api.post('/api/accidents', data, {
+      const response = await api.post('/accidents', data, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setAccidents((prev) => [...prev, response.data.data]);
@@ -65,7 +65,7 @@ export const AccidentProvider = ({ children }) => {
         throw new Error("Accident ID is missing");
       }
   
-      const response = await api.put(`/api/accidents/${id}`, formData, {
+      const response = await api.put(`/accidents/${id}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
   
@@ -89,7 +89,7 @@ export const AccidentProvider = ({ children }) => {
 
   const deleteAccident = async (id) => {
     try {
-      await api.delete(`/api/accidents/${id}`);
+      await api.delete(`/accidents/${id}`);
       setAccidents((prev) => prev.filter((a) => a.id !== id));
       return { success: true };
     } catch (error) {

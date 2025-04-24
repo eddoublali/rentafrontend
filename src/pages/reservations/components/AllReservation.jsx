@@ -119,7 +119,7 @@ export default function AllReservation() {
       <div className="rounded-box border border-base-content/5 bg-base-100">
         <table className="table">
           <thead>
-            <tr>
+            <tr className="bg-sky-100">
               <th>{t("client.name")}</th>
               <th>{t("vehicle.brand")}</th>
               <th>{t("reservation.startDate")}</th>

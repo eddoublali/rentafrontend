@@ -142,7 +142,7 @@ export default function AllUsers() {
       <div className="rounded-box border border-base-content/5 bg-base-100 mt-">
         <table className="table">
           <thead>
-            <tr>
+            <tr className="bg-sky-100">
               <th>{t("user.name")}</th>
               <th>{t("user.email")}</th>
               <th>{t("user.role")}</th>

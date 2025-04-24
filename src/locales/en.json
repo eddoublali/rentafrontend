@@ -506,6 +506,28 @@
 
 
   },
+  "accident": {
+    "allAccidents": "All Accidents",
+    "reportNewAccident": "Report New Accident",
+    "searchByVehicle": "Search by vehicle",
+    "searchByLocation": "Search by location",
+    "searchByDate": "Search by date",
+    "date": "Date",
+    "vehicle": "Vehicle",
+    "location": "Location",
+    "status": "Status",
+    "noAccidents": "No accidents found",
+    "reportFirstAccident": "Report your first accident",
+    "deleteTitle": "Delete Accident Report",
+    "deleteMessage": "Are you sure you want to delete this accident report?",
+    "description": "Description",
+    "damageDescription": "Damage Description",
+    "reportNumber": "Report Number",
+    "reportedBy": "Reported By",
+    "driver": "Driver",
+    "witnesses": "Witnesses",
+    "images": "Images"
+  },
 
   "tables": {
     "infraction": {
